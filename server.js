@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/css', express.static(__dirname + '/public'))
 app.use("/public", express.static(__dirname + "/public"));
-const db=require('config.js')
+const fdb=require('./config');
 
 app.get('/', (req,res)=>{
    
@@ -16,12 +16,15 @@ app.get('/', (req,res)=>{
 
 });
 
-app.post('/addEmployer',(req,res)=>{
+app.post('/addEmployer',async(req,res)=>{
     const name=req.body.name;
     const surname=req.body.surname;
     const patronymic=req.body.patronymic;
     const quality=req.body.quality;
     const info=req.body.info;
+
+    const employers=fdb.collection('employers');
+    
 
     var employer={
         name:name,
@@ -30,7 +33,8 @@ app.post('/addEmployer',(req,res)=>{
         quality:quality,
         info:info
     }
-    console.log(employer);
+    const new_employer=await fdb.collection('employers').add(employer);
+    
 });
 
 app.listen(port, ()=>{

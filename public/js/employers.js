@@ -1,7 +1,8 @@
 
+
 let popUp = document.getElementById("popStud");
 let popUpback = document.getElementById("opened");
-console.log('hello')
+
 function openPopStud() {
     popUp.classList.add("open-popstud");
     popUpback.classList.add("b-popup");
@@ -32,6 +33,54 @@ $(document).ready(function () {
         }
     });
 });
+
+async function showEmployers() {
+   
+    let employers=fdb.collection('employers');
+
+    let employers_qS=await employers.get();
+    employers_qS.forEach(doc => {
+        let name = doc.data().name
+    let surname = doc.data().surname
+    let patronymic = doc.data().patronymic // отчество в карточках не отображается
+    let quality = doc.data().quality
+    let addinfo = doc.data().info
+    var newDiv = document.createElement("div");
+    var newImg = document.createElement("div");
+    var newName = document.createElement("div");
+    var nname = document.createElement("div");
+    var ssurname = document.createElement("div");
+    var newQuality = document.createElement("div");
+    var newAddInfo = document.createElement("p");
+    var btnMore = document.createElement("button");
+    var newLink = document.createElement("a");
+    var Img = document.createElement("img");
+
+    Img.src = '/public/images/user.svg';
+    newDiv.classList.add('box');
+    newImg.classList.add('image');
+    nname.classList.add('name_job');
+    ssurname.classList.add('name_job');
+    newName.classList.add('name');
+    newQuality.classList.add('name_job');
+    btnMore.classList.add('btns');
+    newLink.classList.add('button');
+    newLink.href = '#';
+    newImg.innerHTML = Img.outerHTML;
+    nname.innerHTML = name;
+    ssurname.innerHTML = surname;
+    newName.innerHTML = nname.outerHTML + ssurname.outerHTML;
+    newQuality.innerHTML = quality;
+    newAddInfo.innerHTML = addinfo;
+    newLink.innerHTML = 'Подробнее';
+    btnMore.innerHTML = newLink.outerHTML;
+
+    newDiv.innerHTML = newImg.outerHTML + newName.outerHTML + newQuality.outerHTML + newAddInfo.outerHTML + btnMore.outerHTML;
+    
+    field.insertAdjacentElement('afterbegin', newDiv);
+    });
+}
+showEmployers();
 function addEmployee() {
     let name = document.getElementById('name').value;
     let surname = document.getElementById('surname').value
