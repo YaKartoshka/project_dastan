@@ -15,6 +15,23 @@ app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname + '/views/employers.html'));
 
 });
+app.get('/employers', (req,res)=>{
+   
+    res.sendFile(path.join(__dirname + '/views/employers.html'));
+
+});
+
+app.get('/events', (req,res)=>{
+   
+    res.sendFile(path.join(__dirname + '/views/events.html'));
+
+});
+
+app.get('/index', (req,res)=>{
+   
+    res.sendFile(path.join(__dirname + '/views/index.html'));
+
+});
 
 app.post('/addEmployer',async(req,res)=>{
     const name=req.body.name;
