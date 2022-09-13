@@ -51,9 +51,24 @@ app.post('/addEmployer',async(req,res)=>{
         info:info
     }
     const new_employer=await fdb.collection('employers').add(employer);
+    res.sendFile(path.join(__dirname + '/views/employers.html'));
     
 });
-
+app.post('/addEvent',async(req,res)=>{
+    const time=req.body.selected_time;
+    const service=req.body.service_type;
+    const employee_name=req.body.employee;
+    const employers_sch=fdb.collection('employers_schedule');
+    const employers_qS=await employers_sch.get();
+    
+    var data={
+        time:time,
+        service:service,
+        full_name:employee_name
+    }
+     const new_event=await fdb.collection('employers_schedule').add(data);
+     res.sendFile(path.join(__dirname + '/views/index.html'));
+})
 app.listen(port, ()=>{
     console.log(`App listening at http://localhost:${port}`);
 });

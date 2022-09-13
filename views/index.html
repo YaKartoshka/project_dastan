@@ -60,17 +60,19 @@
         </div>
     </nav>
     <!-------------------------------->
+    <form action="/addEvent" method="post">
     <div class="main">
         <div class="info">
-            <select class="employee" name="" id="">
-                <option class="option" value="">Александр Ли</option>
-                <option class="option" value="">Рахат Би</option>
-                <option class="option" value="">Мадина Ки</option>
-                <option class="option" value="">Employee4</option>
-                <option class="option" value="">Employee5</option>
-                <option class="option" value="">Employee6</option>
-                <option class="option" value="">Employee7</option>
-                <option class="option" value="">Employee8</option>
+
+            <select class="employee" name="employee" id="employers" onchange="showEmployer(), remove(), showEvents()">
+                <option class="option" value="Александр Ли">Александр Ли</option>
+                <option class="option" value="Рахат Би">Рахат Би</option>
+                <option class="option" value="Мадина Ки">Мадина Ки</option>
+                <option class="option" value="Employee4">Employee4</option>
+                <option class="option" value="Employee5">Employee5</option>
+                <option class="option" value="Employee6">Employee6</option>
+                <option class="option" value="Employee7">Employee7</option>
+                <option class="option" value="Employee8">Employee8</option>
 
             </select>
             <div id="field" class="schedule">
@@ -109,11 +111,12 @@
         <div class="popUp" id="popStud">
             <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
-            <input type="time" name="from" class="timer" id="time" checked>
-            <input id="eventTitleInput" placeholder="Тип услуги">
-            <button class="submit" id="submit" type="button" onclick="addEvent(), closePopStud()">Добавить</button>
+                    <input type="time" name="selected_time" class="timer" id="time" checked>
+                    <input id="eventTitleInput" name="service_type" placeholder="Тип услуги">
+                    <button class="submit" id="submit" type="submit" onclick="addEvent(), closePopStud()">Добавить</button>
         </div>
     </div>
+    </form>
 
     <div class="popback2" id="opened2">
         <div class="popUp2" id="popStud2">
@@ -144,6 +147,9 @@
     </div>
 
     <div id="modalBackDrop"></div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="/public/js/fdb_config.js"id="MainScript"></script>
     <script src="/public/js/script_time.js"></script>
     <script src="/public/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

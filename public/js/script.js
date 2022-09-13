@@ -27,7 +27,19 @@ function openModal(date) {
     // backDrop.style.display = 'block';
 
 }
-
+async function showEmployer() {
+    var select = document.getElementById('employers');
+    var text = select.options[select.selectedIndex].text;
+    const employers_sch=fdb.collection('employers_schedule');
+    const employers_qS=await employers_sch.get();
+    employers_qS.forEach(doc => {
+        if(text==doc.data().full_name){
+            console.log(doc.data().appointment_time.toDate().getDate(), doc.data().appointment_time.toDate().getHours(), doc.data().appointment_time.toDate().getMinutes())
+            
+        }
+    })
+}
+showEmployer();
 function load() {
     const dt = new Date();
     // create object

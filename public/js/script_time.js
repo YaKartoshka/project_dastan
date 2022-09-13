@@ -57,7 +57,7 @@ function addEvent() {
     var btnClose = document.createElement("button");
     var newLink = document.createElement("a");
     newDiv.classList.add('event')
-    newDiv.id = cnt;
+    newDiv.id = "schedule_id";
     newTime.classList.add('time');
     newInput.classList.add('tEvent');
     btnClose.classList.add('delbtn');
@@ -83,14 +83,55 @@ function addEvent() {
             this.click = openPopStud2();
         })
     })
+}
+showEvents();
+async function showEvents() {
+    console.log('event')
+    var select = document.getElementById('employers');
+    var selected_employee = select.options[select.selectedIndex].text;
+    console.log(selected_employee)
+    const employers_sch=fdb.collection('employers_schedule');
+    const employers_qS=await employers_sch.get();
+    employers_qS.forEach(doc => {
+        if(selected_employee==doc.data().full_name){
+            console.log(doc.data().time,doc.data().service)
+            let time = doc.data().time;
+            let input = doc.data().service;
+            var newDiv = document.createElement("div");
+            var newTime = document.createElement("span");
+            var newInput = document.createElement("p");
+            var newDel = document.createElement("div");
+            var btnClose = document.createElement("button");
+            var newLink = document.createElement("a");
+            newDiv.classList.add('event')
+            newDiv.id = "schedule_id";
+            newTime.classList.add('time');
+            newInput.classList.add('tEvent');
+            btnClose.classList.add('delbtn');
+            btnClose.id = 'remove';
+            newLink.classList.add('fa-solid')
+            newLink.classList.add('fa-circle-xmark')
+            newDel.classList.add('delete');
+            newLink.href = '#';
+            newTime.innerHTML = time;
+            newInput.innerHTML = input;
+            btnClose.innerHTML = newLink.outerHTML;
+            newDel.innerHTML = btnClose.outerHTML;
+            newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
+            field.insertAdjacentElement('beforeend', newDiv);
+       // }
+        }
+    });
 
     
 
 
 }
 
+
+
 function remove(){
-    var description = document.getElementById(delId);
+    var description = document.getElementById('schedule_id');
     description.remove();
 }
 

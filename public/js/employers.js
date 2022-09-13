@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
     });
 });
-
+showEmployers();
 async function showEmployers() {
    
     let employers=fdb.collection('employers');
@@ -80,7 +80,7 @@ async function showEmployers() {
     field.insertAdjacentElement('afterbegin', newDiv);
     });
 }
-showEmployers();
+
 function addEmployee() {
     let name = document.getElementById('name').value;
     let surname = document.getElementById('surname').value
