@@ -15,6 +15,19 @@ app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname + '/views/signUp.html'));
 
 });
+
+app.post('/index', (req,res)=>{
+
+    res.sendFile(path.join(__dirname + '/views/index.html'));
+
+
+});
+app.post('/index', (req,res)=>{
+
+    res.sendFile(path.join(__dirname + '/views/index.html'));
+
+
+});
 app.get('/employers', (req,res)=>{
    
     res.sendFile(path.join(__dirname + '/views/employers.html'));
@@ -27,11 +40,25 @@ app.get('/events', (req,res)=>{
 
 });
 
-app.get('/index', (req,res)=>{
+app.get('/login', (req,res)=>{
    
-    res.sendFile(path.join(__dirname + '/views/index.html'));
+    res.sendFile(path.join(__dirname + '/views/signIn.html'));
 
 });
+
+
+app.get('/register', (req,res)=>{
+   
+    res.sendFile(path.join(__dirname + '/views/signUp.html'));
+
+});
+
+app.get('/email_confirm', (req,res)=>{
+   
+    res.sendFile(path.join(__dirname + '/views/email.confirm.html'));
+
+});
+
 
 app.post('/addEmployer',async(req,res)=>{
     const name=req.body.name;
