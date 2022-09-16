@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+body{
+    background-color: #92a1d1;
+    
+}
+.all{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.footerimg{
+    margin-top: auto;
+}
+.imgf{
+    width: 100%;
+}
+.imgtop{
+    width: 291px;
+    height: 128px;
+}
+
+.form-box{
+    width: 380px;
+    height: 515px;
+    position: relative;
+    margin: auto auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.button-box{
+    width: 220px;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+}
+.toggle-btn{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    color: #5C5C5C;
+}
+#btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(253.58deg, #FFC000 1.55%, #FF8A00 95.8%);
+    border-radius: 30px;
+    transition: .5s;
+}
+.social-icons{
+    bottom: 5%;
+    left: 25%;
+    position: absolute;
+    text-align: center;
+}
+.social-icons img{
+  width: 30px;
+  margin: 0 12px;
+  box-shadow: 0 0 20px 0 #7f7f7f3d;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.input-group{
+    margin: 30px auto;
+    width: 280px;
+    font-size: 20px;
+}
+.input-group input::placeholder{
+    font-size: 15px;
+}
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+.check{
+    display: flex;
+    align-items: center;
+}
+.check h5{
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+}
+.submit-btn{
+    width: 65%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: #92a1d1;
+    border: 0;
+    color: white;
+    outline: none;
+    border-radius: 30px;
+    font-size: 15px;
+}
+.submit-btn:hover{
+    transition: 0.5s;
+    border: 1px solid #92a1d1;
+    background-color: white;
+    color: #92a1d1;
+}
+.check-box{
+    margin: 30px 10px 30px 0;
+}
+span{
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+}
+#teach{
+    left: 50px;
+}
+#student{
+    left: 450px;
+}
+#bilim{
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 53px;
+    margin-top: 20px;
+    color: #000;
+}
+.link{
+    text-decoration: none;
+    color: #5C5C5C;
+}
+
+
+
+@media (max-width: 390px) {
+    .all{
+        overflow: auto;
+    }
+    .imgf{
+        width: 380px;
+    }
+}
+@media (max-width: 360px) {
+    .all{
+        overflow: auto;
+    }
+    .imgf{
+        width: 360px;
+    }
+    .form-box{
+        width: 350px;
+    }
+    .input-group{
+        width: 260px;
+    }
+}
+@media (max-width: 320px) {
+    .all{
+        overflow: auto;
+    }
+    .imgf{
+        width: 320px;
+    }
+    .form-box{
+        width: 310px;
+    }
+    .input-group{
+        width: 220px;
+    }
+}
+

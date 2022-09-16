@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="rus">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignForm</title>
+    <link rel="stylesheet" href="/public/css/signform.css">
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="jquery.maskedinput.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="all">
+        
+        <div class="form-box">
+            <h3 id="bilim">Регистрация</h3>
+
+            <div class="social-icons">
+                <img src="fb.png" alt="">
+                <img src="gp.png" alt="">
+                <img src="tw.png" alt="">
+            </div>
+
+            <form action="/main" method="get" class="input-group">
+                <input type="text" class="input-field" placeholder="ФИО" required>
+                <input type="email" class="input-field" placeholder="Электронная почта" required>
+                <input type="tel" name="tel" pattern="+7[0-9]{3}-[0-9]{3}-[0-9]{4}" class="input-field"
+                    placeholder="Номер телефона" required>
+                <input type="password" class="input-field" id="teahcer_pass" onkeyup="compareTeacher();"
+                    placeholder="Пароль" required>
+                <input type="password" class="input-field" id="teahcer_confirm" onkeyup="compareTeacher();"
+                    placeholder="Подтверждение пароля" required>
+                <p id='message2'></p>
+                <div class="check">
+                    <input type="checkbox" class="check-box" required>
+                    <h5>Я принимаю все соглашения</h5>
+                </div>
+                <button type="submit" class="submit-btn" id="teacher_reg">Регистрация</button>
+            </form>
+        </div>
+        <div class="footerimg">
+            
+        </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("teach");
+        var y = document.getElementById("student");
+        var z = document.getElementById("btn");
+
+        
+
+        var compareStudent = function () {
+            if (document.getElementById('student_pass').value ==
+                document.getElementById('student_confirm').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Пароли совпадают';
+                document.getElementById('student_pass').style.borderBlockColor = 'green';
+                document.getElementById('student_confirm').style.borderBlockColor = 'green';
+                document.getElementById('student_reg').disabled = false;
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Пароли не совпадают';
+                document.getElementById('student_pass').style.borderBlockColor = 'red';
+                document.getElementById('student_confirm').style.borderBlockColor = 'red';
+                document.getElementById('student_reg').disabled = true;
+            }
+            if (document.getElementById('student_pass').value == "" || document.getElementById('student_confirm').value == "") {
+                document.getElementById('message').innerHTML = null;
+            }
+        }
+        var compareTeacher = function () {
+            if (document.getElementById('teahcer_pass').value ==
+                document.getElementById('teahcer_confirm').value) {
+                document.getElementById('message2').style.color = 'green';
+                document.getElementById('message2').innerHTML = 'Пароли совпадают';
+                document.getElementById('teahcer_pass').style.borderBlockColor = 'green';
+                document.getElementById('teahcer_confirm').style.borderBlockColor = 'green';
+                document.getElementById('teacher_reg').disabled = false;
+
+            } else {
+                document.getElementById('message2').style.color = 'red';
+                document.getElementById('message2').innerHTML = 'Пароли не совпадают';
+                document.getElementById('teahcer_pass').style.borderBlockColor = 'red';
+                document.getElementById('teahcer_confirm').style.borderBlockColor = 'red';
+                document.getElementById('teacher_reg').disabled = true;
+            }
+            if (document.getElementById('teahcer_pass').value == "" || document.getElementById('teahcer_confirm').value == "") {
+                document.getElementById('message2').innerHTML = null;
+            }
+        }
+    </script>
+</body>
+
+</html>

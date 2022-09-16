@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25" height="25" viewBox="0 0 25 25" xml:space="preserve">
+<desc>Created with Fabric.js 4.6.0</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 12.52 12.52)" id="0IjrQK0kbpdMBOME32Kc-"  >
+<linearGradient id="SVGID_11" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 0 0)"  x1="34.54545454545455" y1="16.727272727272727" x2="34.54545454545455" y2="34.90909090909091">
+<stop offset="0%" style="stop-color:rgb(255,144,1);stop-opacity: 1"/>
+<stop offset="100%" style="stop-color:rgb(255,185,1);stop-opacity: 1"/>
+</linearGradient>
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: url(#SVGID_11); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-12.5, -12.5)" d="M 3.40909 21.59091 C -1.1363599999999998 17.045460000000002 -1.1363599999999998 7.954550000000001 3.40909 3.4090900000000026 C 7.95454 -1.1363599999999972 17.04545 -1.1363599999999972 21.590909999999997 3.4090900000000026 C 26.136359999999996 7.954540000000002 26.136359999999996 17.045450000000002 21.590909999999997 21.59091 C 17.04546 26.13636 7.954549999999998 26.13636 3.409089999999999 21.59091 z" stroke-linecap="round" />
+</g>
+<g transform="matrix(0.96 0 0 0.96 12.77 13.24)" id="ZyZq04K1pGQdhWRPu7ffG"  >
+<linearGradient id="SVGID_12" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 41.93 29.49)"  x1="48" y1="28" x2="48" y2="45">
+<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity: 1"/>
+<stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity: 1"/>
+</linearGradient>
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: url(#SVGID_12); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-47.76, -36.25)" d="M 45.229 29.4922 L 47.771 34.2051 L 50.313 29.4922 L 53.4951 29.4922 L 49.5708 36.1904 L 53.5972 43 L 50.3872 43 L 47.771 38.1943 L 45.1548 43 L 41.9263 43 L 45.9619 36.1904 L 42.0283 29.4922 L 45.229 29.4922 Z" stroke-linecap="round" />
+</g>
+</svg>

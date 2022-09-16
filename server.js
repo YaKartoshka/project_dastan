@@ -12,7 +12,7 @@ const fdb=require('./config');
 
 app.get('/', (req,res)=>{
    
-    res.sendFile(path.join(__dirname + '/views/employers.html'));
+    res.sendFile(path.join(__dirname + '/views/signUp.html'));
 
 });
 app.get('/employers', (req,res)=>{
