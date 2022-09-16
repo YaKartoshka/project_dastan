@@ -47,7 +47,7 @@ $(document).ready(function () {
     });
 });
 function addEvent() {
-    cnt++;
+    
     let time = document.getElementById('time').value;
     let input = document.getElementById('eventTitleInput').value;
     var newDiv = document.createElement("div");
@@ -84,17 +84,16 @@ function addEvent() {
         })
     })
 }
-showEvents();
 async function showEvents() {
     console.log('event')
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
-    console.log(selected_employee)
+    console.log(selected_employee);
     const employers_sch=fdb.collection('employers_schedule');
     const employers_qS=await employers_sch.get();
     employers_qS.forEach(doc => {
         if(selected_employee==doc.data().full_name){
-            console.log(doc.data().time,doc.data().service)
+            console.log(doc.data().time,doc.data().service,selected_employee)
             let time = doc.data().time;
             let input = doc.data().service;
             var newDiv = document.createElement("div");
@@ -104,7 +103,7 @@ async function showEvents() {
             var btnClose = document.createElement("button");
             var newLink = document.createElement("a");
             newDiv.classList.add('event')
-            newDiv.id = "schedule_id";
+            newDiv.id = doc.id;
             newTime.classList.add('time');
             newInput.classList.add('tEvent');
             btnClose.classList.add('delbtn');
@@ -129,10 +128,27 @@ async function showEvents() {
 }
 
 
-
-function remove(){
-    var description = document.getElementById('schedule_id');
-    description.remove();
+showEvents();
+async function remove(){
+    
+    const employers_sch=fdb.collection('employers_schedule');
+    const employers_qS=await employers_sch.get();
+   
+    var description =document.querySelectorAll('.event');
+   
+     Array.from(description).forEach(
+      async  (desc, index, array)=> {
+         deleteCard(desc, index)
+        }
+    );
+    
+  
+    function deleteCard(desc, index) {
+        description[index].remove();
+        console.log(index)
+    }
+    
+    
 }
 
 

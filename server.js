@@ -69,6 +69,7 @@ app.post('/addEvent',async(req,res)=>{
      const new_event=await fdb.collection('employers_schedule').add(data);
      res.sendFile(path.join(__dirname + '/views/index.html'));
 })
+
 app.listen(port, ()=>{
     console.log(`App listening at http://localhost:${port}`);
 });
