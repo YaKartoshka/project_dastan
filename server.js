@@ -4,6 +4,8 @@ const bodyParser=require('body-parser');
 const app=express();
 const port=3000|| process.env.port;
 const path=require('path');
+
+const admin = require("firebase-admin");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/css', express.static(__dirname + '/public'))
@@ -16,7 +18,22 @@ app.get('/', (req,res)=>{
 
 });
 
-app.post('/index', (req,res)=>{
+app.post('/signUp', async (req, res) => {
+    const user = {
+      email: req.body.email,
+      password: req.body.password
+    }
+    const userResponse = await admin.auth().createUser({
+      email: user.email,
+      password: user.password,
+      emailVerified: false,
+      disabled: false
+    });
+    res.json(userResponse);
+  });
+
+
+app.get('/index', (req,res)=>{
 
     res.sendFile(path.join(__dirname + '/views/index.html'));
 
@@ -100,3 +117,4 @@ app.post('/addEvent',async(req,res)=>{
 app.listen(port, ()=>{
     console.log(`App listening at http://localhost:${port}`);
 });
+
