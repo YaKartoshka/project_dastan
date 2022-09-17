@@ -22,14 +22,14 @@
         
             <div class="formBx">
                 
-                <form class="form">
+                <form class="form" action="/signIn" method="post">
                     <div class="inputdiv">
                         <p class="text">Логин</p>
-                        <input class="input" type="email" placeholder="E-mail">
+                        <input class="input" type="email" name="email" placeholder="E-mail">
                     </div>
                     <div class="inputdiv">
                         <p class="text">Пароль</p>
-                        <input class="input" type="password" placeholder="Введите пароль">
+                        <input class="input" type="password" name="password" placeholder="Введите пароль">
                     </div>
                     <div class="remember">
                         <label><input id="check" type="checkbox" name=""><p>Запомнить меня</p></label>
@@ -37,7 +37,7 @@
                     <button onclick="document.location='#'" class="signbtn">Войти</button>
                     <div class="no-account">
                         <p>Нет аккаунта?</p>
-                        <a href="/views/signUp.html">Регистрация</a>
+                        <a href="signUp">Регистрация</a>
                     </div>
                 </form>
             </div>    
