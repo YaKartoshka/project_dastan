@@ -5,6 +5,7 @@ let popUp2 = document.getElementById("popStud2");
 let popUpback2 = document.getElementById("opened2");
 let cnt = 0;
 let delId = 0;
+let clicked_id=0;
 function openPopStud() {
     popUp.classList.add("open-popstud");
     popUpback.classList.add("b-popup");
@@ -14,14 +15,25 @@ function closePopStud() {
     popUp.classList.remove("open-popstud");
     popUpback.classList.remove("b-popup");
 }
-function openPopStud2() {
+function openPopStud2(clicked_id) {
+    
     popUp2.classList.add("open-popstud2");
     popUpback2.classList.add("b-popup2");
+    
+   
+    
 }
 
-function closePopStud2() {
+function closePopStud2YES() {
     popUp2.classList.remove("open-popstud2");
     popUpback2.classList.remove("b-popup2");
+     const child_card=document.getElementById(clicked_id);
+     child_card.parentElement.remove();
+}
+function closePopStud2NO() {
+    popUp2.classList.remove("open-popstud2");
+    popUpback2.classList.remove("b-popup2");
+ 
 }
 
 
@@ -65,6 +77,7 @@ function addEvent() {
     newLink.classList.add('fa-solid')
     newLink.classList.add('fa-circle-xmark')
     newDel.classList.add('delete');
+    newDel.setAttribute('onclick', "removeCard(this.id)");
     newLink.href = '#';
     newTime.innerHTML = time;
     newInput.innerHTML = input;
@@ -80,7 +93,7 @@ function addEvent() {
     $(document).ready(function(){
         $('.fa-circle-xmark').click(function(){
             // openPopStud();
-            this.click = openPopStud2();
+           // this.click = openPopStud2();
         })
     })
 }
@@ -103,7 +116,7 @@ async function showEvents() {
             var btnClose = document.createElement("button");
             var newLink = document.createElement("a");
             newDiv.classList.add('event')
-            newDiv.id = doc.id;
+            newDiv.id = 'event_id';
             newTime.classList.add('time');
             newInput.classList.add('tEvent');
             btnClose.classList.add('delbtn');
@@ -111,6 +124,8 @@ async function showEvents() {
             newLink.classList.add('fa-solid')
             newLink.classList.add('fa-circle-xmark')
             newDel.classList.add('delete');
+            newDel.id=doc.id;
+            newDel.setAttribute('onclick', "removeCard(this.id)");
             newLink.href = '#';
             newTime.innerHTML = time;
             newInput.innerHTML = input;
@@ -125,7 +140,7 @@ async function showEvents() {
             $(document).ready(function(){
                 $('.fa-circle-xmark').click(function(){
                     // openPopStud();
-                    this.click = openPopStud2();
+                    //this.click = openPopStud2();
                 })
             })
         }
@@ -153,6 +168,14 @@ $(document).ready(function(){
         // openPopStud();
         this.click = openPopStud2();
     })
-})
+});
 
-
+function removeCard(click_id){
+   clicked_id=click_id;
+   console.log(clicked_id)
+    openPopStud2();
+    
+    
+   
+    
+  }
