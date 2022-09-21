@@ -118,9 +118,19 @@ async function showEvents() {
             newDel.innerHTML = btnClose.outerHTML;
             newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
             field.insertAdjacentElement('beforeend', newDiv);
-       // }
+            $('.event').on("click", function () {
+                delId = ($(this).attr('id'));
+                
+            })
+            $(document).ready(function(){
+                $('.fa-circle-xmark').click(function(){
+                    // openPopStud();
+                    this.click = openPopStud2();
+                })
+            })
         }
     });
+   
 
     
 
@@ -129,27 +139,20 @@ async function showEvents() {
 
 
 showEvents();
-async function remove(){
-    
-    const employers_sch=fdb.collection('employers_schedule');
-    const employers_qS=await employers_sch.get();
-   
-    var description =document.querySelectorAll('.event');
-   
-     Array.from(description).forEach(
-      async  (desc, index, array)=> {
-         deleteCard(desc, index)
-        }
-    );
-    
-  
-    function deleteCard(desc, index) {
-        description[index].remove();
-        console.log(index)
-    }
-    
-    
+
+function remove(){
+    console.log('remove');
+    var cards = document.querySelectorAll('.event');
+    cards.forEach(card=>{
+        card.remove();
+    });
 }
 
+$(document).ready(function(){
+    $('.day').click(function(){
+        // openPopStud();
+        this.click = openPopStud2();
+    })
+})
 
 

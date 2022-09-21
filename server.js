@@ -11,6 +11,7 @@ const admin = require("firebase-admin");
 const { getAuth } = require('firebase/auth');
 const fauth=getAuth(firebase.getApp())
 
+const fdb=admin.firestore();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/css', express.static(__dirname + '/public'))
@@ -35,17 +36,19 @@ app.post('/signIn', async (req, res) => {
     const email=req.body.email;
     const password=req.body.password;
     
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(fauth,email, password)
   .then((userCredential) => {
-    // Signed in 
+    
     var user = userCredential.user;
-    // ...
+    res.sendFile(path.join(__dirname + '/views/index.html'));
   })
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
-    // ..
+    res.redirect(path.join(__dirname + '/views/signIn.html'));
+    
   });
+  
 
 });
 
@@ -127,7 +130,7 @@ app.post('/addEvent',async(req,res)=>{
         full_name:employee_name
     }
      const new_event=await fdb.collection('employers_schedule').add(data);
-     res.sendFile(path.join(__dirname + '/views/index.html'));
+     //res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
 app.listen(port, ()=>{
