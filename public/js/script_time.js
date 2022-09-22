@@ -29,6 +29,11 @@ function closePopStud2YES() {
     popUpback2.classList.remove("b-popup2");
      const child_card=document.getElementById(clicked_id);
      child_card.parentElement.remove();
+     fdb.collection("employers_schedule").doc(`${clicked_id}`).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
 }
 function closePopStud2NO() {
     popUp2.classList.remove("open-popstud2");

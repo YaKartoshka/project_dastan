@@ -130,7 +130,7 @@ app.post('/addEvent',async(req,res)=>{
         full_name:employee_name
     }
      const new_event=await fdb.collection('employers_schedule').add(data);
-     //res.sendFile(path.join(__dirname + '/views/index.html'));
+     res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
 app.listen(port, ()=>{
