@@ -93,13 +93,6 @@ function load() {
 
 }
 
-    $(document).ready(function(){
-        $('.day').click(function(){
-            // openPopStud();
-            // alert('idi obratno v spermobak');
-            this.click = openPopStud2();
-        })
-    })
 
 
 function closeModal() {
@@ -138,11 +131,13 @@ function initButtons() {
     document.getElementById('nextButton').addEventListener('click', () => {
         nav++;
         load();
+        addEventCard();
     });
 
     document.getElementById('backButton').addEventListener('click', () => {
         nav--;
         load();
+        addEventCard();
     });
 
     document.getElementById('saveButton').addEventListener('click', saveEvent);

@@ -63,8 +63,12 @@ $(document).ready(function () {
         }
     });
 });
-function addEvent() {
-    
+async function addEvent() {
+    const employers_sch=fdb.collection('employers_schedule');
+    const employers_qS=await employers_sch.get();
+
+    var select = document.getElementById('employers');
+    var selected_employee = select.options[select.selectedIndex].text;
     let time = document.getElementById('time').value;
     let input = document.getElementById('eventTitleInput').value;
     var newDiv = document.createElement("div");
@@ -90,7 +94,12 @@ function addEvent() {
     newDel.innerHTML = btnClose.outerHTML;
     newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
     field.insertAdjacentElement('beforeend', newDiv);
-
+    var data={
+        time:time,
+        service:input,
+        full_name:selected_employee
+    }
+    const new_event=await fdb.collection('employers_schedule').add(data);
     $('.event').on("click", function () {
         delId = ($(this).attr('id'));
         
@@ -107,6 +116,7 @@ async function showEvents() {
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
     console.log(selected_employee);
+    var events=document.getElementById('events');
     const employers_sch=fdb.collection('employers_schedule');
     const employers_qS=await employers_sch.get();
     employers_qS.forEach(doc => {
@@ -137,7 +147,7 @@ async function showEvents() {
             btnClose.innerHTML = newLink.outerHTML;
             newDel.innerHTML = btnClose.outerHTML;
             newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
-            field.insertAdjacentElement('beforeend', newDiv);
+            events.insertAdjacentElement('beforeend', newDiv);
             $('.event').on("click", function () {
                 delId = ($(this).attr('id'));
                 
