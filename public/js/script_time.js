@@ -93,7 +93,7 @@ async function addEvent() {
     btnClose.innerHTML = newLink.outerHTML;
     newDel.innerHTML = btnClose.outerHTML;
     newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
-    field.insertAdjacentElement('beforeend', newDiv);
+    events.insertAdjacentElement('beforeend', newDiv);
     var data={
         time:time,
         service:input,
