@@ -62,17 +62,10 @@
     <!-------------------------------->
  
     <div class="main">
-        <div class="info">
+        <div class="info" onload="showEmloyersList()">
 
-            <select class="employee" name="employee" id="employers" onchange="remove(), showEvents()">
-                <option class="option" value="Александр Ли">Александр Ли</option>
-                <option class="option" value="Рахат Би">Рахат Би</option>
-                <option class="option" value="Мадина Ки">Мадина Ки</option>
-                <option class="option" value="Employee4">Employee4</option>
-                <option class="option" value="Employee5">Employee5</option>
-                <option class="option" value="Employee6">Employee6</option>
-                <option class="option" value="Employee7">Employee7</option>
-                <option class="option" value="Employee8">Employee8</option>
+            <select class="employee" name="employee" id="employers" onload="showEvents()" onchange="remove(),showEvents()">
+                
             </select>
             <div id="events" class="schedule">
 
@@ -122,7 +115,7 @@
                 onclick="closePopStud2()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button> 
                 <h4>Вы уверены что хотите удалить данное событие?</h4>
         <button class="submit-yes" id="submit-yes" type="button" onclick=" closePopStud2YES()">Да</button>
-        <button class="submit" id="submit" type="button" onclick=" closePopStud2NO  ()">Нет</button> 
+        <button class="submit" id="submit" type="button" onclick=" closePopStud2NO()">Нет</button> 
         </div>
     </div>
 

@@ -24,12 +24,16 @@ function openPopStud2(clicked_id) {
     
 }
 
+
 function closePopStud2YES() {
     popUp2.classList.remove("open-popstud2");
     popUpback2.classList.remove("b-popup2");
+    var cookie_data=document.cookie;
+    var fid_data=cookie_data.split("=");
+    var fid=fid_data[1];
      const child_card=document.getElementById(clicked_id);
      child_card.parentElement.remove();
-     fdb.collection("employers_schedule").doc(`${clicked_id}`).delete().then(() => {
+     fdb.collection('company').doc(`${fid}`).collection("employers_schedule").doc(`${clicked_id}`).delete().then(() => {
         console.log("Document successfully deleted!");
     }).catch((error) => {
         console.error("Error removing document: ", error);
@@ -64,9 +68,14 @@ $(document).ready(function () {
     });
 });
 async function addEvent() {
-    const employers_sch=fdb.collection('employers_schedule');
-    const employers_qS=await employers_sch.get();
 
+    var cookie_data=document.cookie;
+    var fid_data=cookie_data.split("=");
+    var fid=fid_data[1];
+    const events=document.getElementById("events")
+    const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
+    const employers_qS=await employers_sch.get();
+    
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
     let time = document.getElementById('time').value;
@@ -99,7 +108,7 @@ async function addEvent() {
         service:input,
         full_name:selected_employee
     }
-    const new_event=await fdb.collection('employers_schedule').add(data);
+    const new_event=await fdb.collection('company').doc(`${fid}`).collection('employers_schedule').add(data);
     $('.event').on("click", function () {
         delId = ($(this).attr('id'));
         
@@ -112,12 +121,14 @@ async function addEvent() {
     })
 }
 async function showEvents() {
-    console.log('event')
+    //console.log('event')
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
-    console.log(selected_employee);
+    var cookie_data=document.cookie;
+    var fid_data=cookie_data.split("=");
+    var fid=fid_data[1];
     var events=document.getElementById('events');
-    const employers_sch=fdb.collection('employers_schedule');
+    const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
     const employers_qS=await employers_sch.get();
     employers_qS.forEach(doc => {
         if(selected_employee==doc.data().full_name){
@@ -158,7 +169,7 @@ async function showEvents() {
                     //this.click = openPopStud2();
                 })
             })
-        }
+       }
     });
    
 
@@ -168,7 +179,7 @@ async function showEvents() {
 }
 
 
-showEvents();
+
 
 function remove(){
     console.log('remove');
@@ -190,7 +201,25 @@ function removeCard(click_id){
    console.log(clicked_id)
     openPopStud2();
     
-    
+ 
+  };
+
+ async function showEmloyersList(){
    
-    
+    var cookie_data=document.cookie;
+    var fid_data=cookie_data.split("=");
+    var fid=fid_data[1];
+   
+    const selection=document.getElementById('employers');
+    const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers');
+    const employers_qS=await employers_sch.get();
+    employers_qS.forEach(doc=>{
+        
+        var newOption = document.createElement("option");
+        newOption.value=`${doc.data().name} ${doc.data().surname}`;
+        newOption.text=`${doc.data().name} ${doc.data().surname}`;
+        newOption.classList.add('option')
+        selection.options.add(newOption,0);
+    });
   }
+  showEmloyersList();

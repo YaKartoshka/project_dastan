@@ -35,12 +35,15 @@ $(document).ready(function () {
 });
 showEmployers();
 async function showEmployers() {
-   
-    let employers=fdb.collection('employers');
+    
+    var cookie_data=document.cookie;
+    var fid_data=cookie_data.split("=");
+    var fid=fid_data[1];
+    let employers=fdb.collection('company').doc(`${fid}`).collection('employers');
 
     let employers_qS=await employers.get();
     employers_qS.forEach(doc => {
-        let name = doc.data().name
+    let name = doc.data().name
     let surname = doc.data().surname
     let patronymic = doc.data().patronymic // отчество в карточках не отображается
     let quality = doc.data().quality
