@@ -73,8 +73,7 @@ async function addEvent() {
     var fid_data=cookie_data.split("=");
     var fid=fid_data[1];
     const events=document.getElementById("events")
-    const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
-    const employers_qS=await employers_sch.get();
+   
     
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
