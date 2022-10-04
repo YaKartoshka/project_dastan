@@ -121,15 +121,15 @@ async function addEvent() {
     })
 }
 async function showEvents() {
-    //console.log('event')
+    console.log('event')
     var select = document.getElementById('employers');
-    var selected_employee = select.options[select.selectedIndex].text;
     var cookie_data=document.cookie;
     var fid_data=cookie_data.split("=");
     var fid=fid_data[1];
     var events=document.getElementById('events');
     const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
     const employers_qS=await employers_sch.get();
+    var selected_employee =await select.options[select.selectedIndex].text;
     employers_qS.forEach(doc => {
         if(selected_employee==doc.data().full_name){
             console.log(doc.data().time,doc.data().service,selected_employee)
@@ -177,7 +177,8 @@ async function showEvents() {
 
 
 }
-
+showEmloyersList();
+showEvents();
 
 
 
@@ -222,4 +223,4 @@ function removeCard(click_id){
         selection.options.add(newOption,0);
     });
   }
-  showEmloyersList();
+  
