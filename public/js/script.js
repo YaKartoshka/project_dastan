@@ -12,20 +12,23 @@ const weekdays = ['Sunday', 'Monday', 'Thuesday', 'Wednesday', 'Thursday', 'Frid
 function openModal(date) {
     clicked = date;
     
+    const eventForDay = events.find(e => e.date === clicked);
 
-    daySquare.id = 'currentDay';
-    // const eventForDay = events.find(e => e.date === clicked);
-    // //find if there already exist event for this day
+    if (eventForDay) {
+    
+    } else {
+        
+        let dateDiv = document.getElementById('clickedDate')
+        $('.day').on("click", function () {
+            $('.day').removeClass('dayChosen')
+            $(this).addClass('dayChosen')
+            
+        })
+        dateDiv.innerText = date
+        
+    }
 
-    // if (eventForDay) {
-    //     document.getElementById('eventText').innerText = eventForDay.title;
-    //     deleteEventModal.style.display = 'block'
-    // } else{
-    //     newEventModal.style.display = 'block'; 
-    // }
-
-    // backDrop.style.display = 'block';
-
+  
 }
 
 function load() {
