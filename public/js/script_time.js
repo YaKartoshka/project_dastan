@@ -189,12 +189,7 @@ function remove(){
     });
 }
 
-$(document).ready(function(){
-    $('.day').click(function(){
-        // openPopStud();
-        this.click = openPopStud2();
-    })
-});
+
 
 function removeCard(click_id){
    clicked_id=click_id;

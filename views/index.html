@@ -81,8 +81,8 @@
                 <div id="monthDisplay"></div>
 
                 <div>
-                    <button id="backButton">Back</button>
-                    <button id="nextButton">Next</button>
+                    <button id="backButton">Назад</button>
+                    <button id="nextButton">Далее</button>
                 </div>
             </div>
 
@@ -103,9 +103,12 @@
         <div class="popUp" id="popStud">
             <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
-                    <input type="time" name="selected_time" class="timer" id="time" checked>
-                    <input id="eventTitleInput" name="service_type" placeholder="Тип услуги">
-                    <button class="submit" id="submit" type="submit" onclick="addEvent(), closePopStud()">Добавить</button>
+            <div class="popDate">
+                <div class="clickedDate" id="clickedDate">--/--/--</div>
+                <input type="time" name="from" class="timer" id="time" checked>
+            </div>
+            <input id="eventTitleInput" placeholder="Event Title">
+            <button class="submit" id="submit" type="button" onclick="addEvent(), closePopStud()">Добавить</button>
         </div>
     </div>
     

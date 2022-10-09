@@ -1,24 +1,30 @@
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: content-box;
 }
+
 body {
   background-color: #FFFCFF;
 }
 
 .navbar-brand {
-  
+
   font-size: 40px !important;
   color: rgb(99, 99, 99) !important;
   font-family: 'Roboto', sans-serif;
 }
-.navbar{
+
+.navbar {
   box-sizing: border-box;
   min-height: 80px;
   box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.2);
 }
-.container{
+
+.container {
   max-width: 80%;
 }
+
 .nav-link {
   font-size: 18px;
   font-weight: 600;
@@ -26,11 +32,13 @@ body {
   display: inline-block;
   width: fit-content;
 }
-.navbar-nav{
+
+.navbar-nav {
   width: 100%;
   justify-content: space-between;
 }
-.navbar-toggler{
+
+.navbar-toggler {
   margin-left: auto;
 }
 
@@ -94,7 +102,7 @@ body {
 }
 
 .dropdown-content {
-  
+
   display: none;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
@@ -129,29 +137,30 @@ body {
 }
 
 @media (max-width: 1440px) {
-  .container{
+  .container {
     width: 98%;
   }
+
   .icons {
-      display: flex;
-      justify-content: space-around;
-      width: fit-content;
-      
-      transition: all 0.5s ease;
+    display: flex;
+    justify-content: space-around;
+    width: fit-content;
+
+    transition: all 0.5s ease;
   }
 }
 
 @media (max-width: 990px) {
   .navbar-collapse {
-      margin-left: 0px;
+    margin-left: 0px;
   }
 
   .icons {
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-      
-      transition: all 0.5s ease;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    transition: all 0.5s ease;
   }
 }
 
@@ -161,52 +170,61 @@ body {
   width: fit-content !important;
   margin-left: 40px !important;
 }
+
 .calendar {
   padding: 30px;
 }
-.info{
+
+.info {
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.main{
+
+.main {
   display: flex;
   justify-content: space-around;
 }
-.employee{
+
+.employee {
   outline: none;
   background-color: #fff;
   border: none;
   font-size: 40px;
   margin: 30px 0;
 }
-.option{
+
+.option {
   font-size: 30px;
   text-align: center;
 }
-.schedule{
+
+.schedule {
   display: flex;
   flex-direction: column;
 }
-.name{
+
+.name {
   font-size: 40px;
   text-align: center;
 }
-.time{
-  
+
+.time {
+
   font-size: 30px;
   margin: 0 50px 0 0;
 }
-.timer{
+
+.timer {
   padding: 10px;
   box-sizing: border-box;
-  margin-bottom: 25px;
   border-radius: 3px;
   outline: none;
   border: none;
   box-shadow: 0px 0px 3px gray;
 }
+
 .delete {
   display: flex;
   color: white;
@@ -229,6 +247,7 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
+
 .add {
   justify-content: center;
   display: flex;
@@ -288,7 +307,7 @@ body {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  
+
 }
 
 .day {
@@ -305,8 +324,16 @@ body {
   justify-content: space-between;
 }
 
+.dayChosen {
+  background-color: #a0ffbb;
+}
+
 .day:hover {
   background-color: #e8faed;
+}
+
+.day+.dayChosen {
+  background-color: #a0ffbb;
 }
 
 .day+#currentDay {
@@ -324,18 +351,21 @@ body {
   background-color: #58bae4;
   color: white;
   border-radius: 5px;
- 
+
   overflow: hidden;
 }
-.tEvent{
+
+.tEvent {
   margin: 0;
   padding-right: 40px;
 }
+
 .padding {
   cursor: default !important;
   background-color: #FFFCFF !important;
   box-shadow: none !important;
 }
+
 .popUp {
   width: 400px;
   background: #fff;
@@ -351,9 +381,21 @@ body {
   transition: transform 0.4s, top 0.4s;
 }
 
+.popDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.clickedDate {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .popUp2 {
   gap: 10px;
-  width: 400px;
+  width: 600px;
   background: #fff;
   border-radius: 30px;
   position: fixed;
@@ -371,7 +413,7 @@ body {
   visibility: visible;
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
-  
+
 }
 
 .open-popstud2 {
@@ -409,21 +451,24 @@ body {
 .popUp button:hover {
   transform: translateY(+2px)
 }
-.b-popup-open{
+
+.b-popup-open {
   visibility: hidden;
 }
-.b-popup{
- 
-  width:100%;
+
+.b-popup {
+
+  width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  overflow:hidden;
-  position:fixed;
-  top:0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
   visibility: visible;
 }
-.popback{
-  width:100%;
+
+.popback {
+  width: 100%;
   height: 100%;
 }
 
@@ -432,6 +477,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .popUp2 h2 {
   font-size: 20px;
   font-weight: 400;
@@ -458,7 +504,8 @@ body {
   cursor: pointer;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
-.submit-yes{
+
+.submit-yes {
   width: 70%;
   padding: 10px 0px;
   margin-top: 30px;
@@ -471,6 +518,7 @@ body {
   cursor: pointer;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
+
 .popUp2 button:hover {
   transform: translateY(+2px)
 }
@@ -550,6 +598,7 @@ body {
   color: white;
   background-color: #92a1d1;
 }
+
 #backButton,
 #nextButton {
   width: 75px;
@@ -562,6 +611,7 @@ body {
   color: white;
   background-color: #92a1d1;
 }
+
 #eventText {
   font-size: 14px;
 }
@@ -576,11 +626,13 @@ body {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
 @media (max-width:1300px) {
-  .main{
+  .main {
     flex-direction: column;
   }
-  .calendar{
+
+  .calendar {
     margin: 0 auto;
   }
 }
