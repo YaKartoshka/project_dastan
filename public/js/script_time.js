@@ -73,11 +73,12 @@ async function addEvent() {
     var fid_data=cookie_data.split("=");
     var fid=fid_data[1];
     const events=document.getElementById("events")
-   
+    
     
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
     let time = document.getElementById('time').value;
+    let date=document.getElementById('clickedDate').innerHTML;
     let input = document.getElementById('eventTitleInput').value;
     var newDiv = document.createElement("div");
     var newTime = document.createElement("span");
@@ -104,9 +105,11 @@ async function addEvent() {
     events.insertAdjacentElement('beforeend', newDiv);
     var data={
         time:time,
+        date:date,
         service:input,
         full_name:selected_employee
     }
+    console.log(data)
     const new_event=await fdb.collection('company').doc(`${fid}`).collection('employers_schedule').add(data);
     $('.event').on("click", function () {
         delId = ($(this).attr('id'));
