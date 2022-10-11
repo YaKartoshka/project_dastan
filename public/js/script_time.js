@@ -6,6 +6,8 @@ let popUpback2 = document.getElementById("opened2");
 let cnt = 0;
 let delId = 0;
 let clicked_id=0;
+
+var currentMonth=$('#monthDisplay').text();
 function openPopStud() {
     popUp.classList.add("open-popstud");
     popUpback.classList.add("b-popup");
@@ -34,7 +36,7 @@ function closePopStud2YES() {
      const child_card=document.getElementById(clicked_id);
      child_card.parentElement.remove();
      fdb.collection('company').doc(`${fid}`).collection("employers_schedule").doc(`${clicked_id}`).delete().then(() => {
-        console.log("Document successfully deleted!");
+       
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });
@@ -109,7 +111,7 @@ async function addEvent() {
         service:input,
         full_name:selected_employee
     }
-    console.log(data)
+ 
     const new_event=await fdb.collection('company').doc(`${fid}`).collection('employers_schedule').add(data);
     $('.event').on("click", function () {
         delId = ($(this).attr('id'));
@@ -123,64 +125,83 @@ async function addEvent() {
     })
 }
 async function showEvents() {
-    console.log('event')
+    
+    var chosen_day=$('.dayChosen').text();
     var select = document.getElementById('employers');
     var cookie_data=document.cookie;
-    var fid_data=cookie_data.split("=");
-    var fid=fid_data[1];
+    
+    var fid=getCookie('fid')
+    
     var events=document.getElementById('events');
     const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
-    const employers_qS=await employers_sch.get();
+    //const employers_qS=await employers_sch.get();
     var selected_employee =await select.options[select.selectedIndex].text;
-    employers_qS.forEach(doc => {
-        if(selected_employee==doc.data().full_name){
-            console.log(doc.data().time,doc.data().service,selected_employee)
-            let time = doc.data().time;
-            let input = doc.data().service;
-            var newDiv = document.createElement("div");
-            var newTime = document.createElement("span");
-            var newInput = document.createElement("p");
-            var newDel = document.createElement("div");
-            var btnClose = document.createElement("button");
-            var newLink = document.createElement("a");
-            newDiv.classList.add('event')
-            newDiv.id = 'event_id';
-            newTime.classList.add('time');
-            newInput.classList.add('tEvent');
-            btnClose.classList.add('delbtn');
-            btnClose.id = 'remove';
-            newLink.classList.add('fa-solid')
-            newLink.classList.add('fa-circle-xmark')
-            newDel.classList.add('delete');
-            newDel.id=doc.id;
-            newDel.setAttribute('onclick', "removeCard(this.id)");
-            newLink.href = '#';
-            newTime.innerHTML = time;
-            newInput.innerHTML = input;
-            btnClose.innerHTML = newLink.outerHTML;
-            newDel.innerHTML = btnClose.outerHTML;
-            newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
-            events.insertAdjacentElement('beforeend', newDiv);
-            $('.event').on("click", function () {
-                delId = ($(this).attr('id'));
-                
-            })
-            $(document).ready(function(){
-                $('.fa-circle-xmark').click(function(){
-                    // openPopStud();
-                    //this.click = openPopStud2();
+    employers_sch.onSnapshot(qS=>{
+        remove();
+        
+        qS.forEach(doc => {
+            if(selected_employee==doc.data().employer_name){
+                var docDate=doc.data().date;
+                var full_date=docDate.split("/");
+                var docDay=full_date[0];
+                console.log(docDay,chosen_day);
+                if(docDay==chosen_day){
+                console.log(doc.data().time,doc.data().service,selected_employee)
+                let time = doc.data().time;
+                let input = doc.data().service;
+                var newDiv = document.createElement("div");
+                var newTime = document.createElement("span");
+                var newInput = document.createElement("p");
+                var newDel = document.createElement("div");
+                var btnClose = document.createElement("button");
+                var newLink = document.createElement("a");
+                newDiv.classList.add('event')
+                newDiv.id = 'event_id';
+                newTime.classList.add('time');
+                newInput.classList.add('tEvent');
+                btnClose.classList.add('delbtn');
+                btnClose.id = 'remove';
+                newLink.classList.add('fa-solid')
+                newLink.classList.add('fa-circle-xmark')
+                newDel.classList.add('delete');
+                newDel.id=doc.id;
+                newDel.setAttribute('onclick', "removeCard(this.id)");
+                newLink.href = '#';
+                newTime.innerHTML = time;
+                newInput.innerHTML = input;
+                btnClose.innerHTML = newLink.outerHTML;
+                newDel.innerHTML = btnClose.outerHTML;
+                newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
+                events.insertAdjacentElement('beforeend', newDiv);
+                $('.event').on("click", function () {
+                    delId = ($(this).attr('id'));
+                    
                 })
-            })
-       }
-    });
+                $(document).ready(function(){
+                    $('.fa-circle-xmark').click(function(){
+                        // openPopStud();
+                        //this.click = openPopStud2();
+                    })
+                })
+            }
+            
+        }
+        });
+        
+    })
    
 
     
 
 
 }
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
 showEmloyersList();
-showEvents();
+
 
 
 
@@ -203,10 +224,8 @@ function removeCard(click_id){
   };
 
  async function showEmloyersList(){
-   
-    var cookie_data=document.cookie;
-    var fid_data=cookie_data.split("=");
-    var fid=fid_data[1];
+    
+    var fid=getCookie('fid')
    
     const selection=document.getElementById('employers');
     const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers');
@@ -219,5 +238,6 @@ function removeCard(click_id){
         newOption.classList.add('option')
         selection.options.add(newOption,0);
     });
+    showEvents();
   }
   

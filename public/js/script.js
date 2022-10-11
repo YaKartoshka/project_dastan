@@ -22,7 +22,7 @@ function openModal(date) {
         $('.day').on("click", function () {
             $('.day').removeClass('dayChosen')
             $(this).addClass('dayChosen')
-            
+            showEvents();
         })
         dateDiv.innerText = date
         
@@ -71,6 +71,7 @@ function load() {
   
         if (i - paddingDays === day && nav === 0) {
           daySquare.id = 'currentDay';
+          daySquare.className='day dayChosen'
         }
   
         if (eventForDay) {

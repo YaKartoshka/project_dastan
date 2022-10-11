@@ -115,12 +115,12 @@ res.redirect('back');
 })
 
 app.get('/index', (req,res)=>{
-
+    
     res.sendFile(path.join(__dirname + '/views/index.html'));
 
 });
 app.post('/index', (req,res)=>{
-
+   
     res.sendFile(path.join(__dirname + '/views/index.html'));
 
 
