@@ -76,7 +76,6 @@ async function addEvent() {
     var fid=fid_data[1];
     const events=document.getElementById("events")
     
-    
     var select = document.getElementById('employers');
     var selected_employee = select.options[select.selectedIndex].text;
     let time = document.getElementById('time').value;
@@ -109,7 +108,7 @@ async function addEvent() {
         time:time,
         date:date,
         service:input,
-        full_name:selected_employee
+        employer_name:selected_employee
     }
  
     const new_event=await fdb.collection('company').doc(`${fid}`).collection('employers_schedule').add(data);
