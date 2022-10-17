@@ -7,7 +7,13 @@
 body {
   background-color: #FFFCFF;
 }
-
+@media (max-width:840px) {
+  
+  body{
+    width: 840px;
+    zoom:45%;
+  }
+}
 .navbar-brand {
 
   font-size: 40px !important;
@@ -20,7 +26,11 @@ body {
   min-height: 80px;
   box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.2);
 }
-
+@media (max-width:840px) {
+  .navbar{
+    width: 840px;
+  }
+}
 .container {
   max-width: 80%;
 }
@@ -181,7 +191,12 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
+@media (max-width:840px) {
+  .info{
+    width: 840px;
+    padding: 30px 0;
+  }
+}
 .main {
   display: flex;
   justify-content: space-around;

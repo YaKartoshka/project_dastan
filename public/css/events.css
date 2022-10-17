@@ -1,11 +1,12 @@
-*
-{
+* {
     box-sizing: content-box;
 }
 
 body {
     background-color: #FFFCFF;
 }
+
+
 
 .navbar-brand {
 
@@ -23,7 +24,15 @@ body {
 .container {
     max-width: 80%;
 }
-
+@media (max-width:840px) {
+    .navbar{
+        width: 840px;
+    }
+    body {
+        width: 840px;
+        zoom: 45%;
+    }
+}
 .nav-link {
     font-size: 18px;
     font-weight: 600;
@@ -224,9 +233,11 @@ body {
     text-decoration: none;
     font-size: 30px;
 }
-.delete button:hover{
+
+.delete button:hover {
     transform: translateY(-1px);
 }
+
 .delete i:hover {
     transform: translateY(-1px);
     border-radius: 50%;
@@ -323,6 +334,7 @@ body {
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
+
 .popUp2 {
     gap: 10px;
     width: 600px;
@@ -345,6 +357,7 @@ body {
     transform: translate(-50%, -50%) scale(1);
 
 }
+
 .open-popstud2 {
     visibility: visible;
     top: 50%;
@@ -376,7 +389,8 @@ body {
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
-.submit-yes{
+
+.submit-yes {
     width: 70%;
     padding: 10px 0px;
     margin-top: 30px;
@@ -389,6 +403,7 @@ body {
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
+
 .popUp button:hover {
     transform: translateY(+2px)
 }
@@ -413,11 +428,13 @@ body {
     width: 100%;
     height: 100%;
 }
+
 .popback2 {
     z-index: 0;
     width: 100%;
     height: 100%;
 }
+
 .popUp2 h2 {
     font-size: 20px;
     font-weight: 400;
@@ -446,7 +463,8 @@ body {
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
-.submit-yes{
+
+.submit-yes {
     width: 70%;
     padding: 10px 0px;
     margin-top: 30px;
@@ -459,6 +477,7 @@ body {
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
+
 .popUp2 button:hover {
     transform: translateY(+2px)
 }
