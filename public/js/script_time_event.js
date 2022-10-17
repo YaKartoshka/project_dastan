@@ -32,17 +32,21 @@ function closePopStud2() {
 }
 
 async function showDayEvents(month,day){
-  
+    var fullDate=$('#monthDisplay').text();
     var fid=getCookie('fid')
     let events_list=document.getElementById('events');
+    var chosen_month=fullDate.split(" ");
+    
+    chosen_month=getMonth(chosen_month[0]);
     const events_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
     const events_qS=await events_sch.get();
      events_qS.forEach(doc => {
         var docDate=doc.data().date;
         var full_date=docDate.split("/");
         var docDay=full_date[0];
+        var docMonth=full_date[1];
         console.log(docDay,day);
-        if(docDay==day){
+        if(docDay==day  && docMonth==chosen_month){
         
             var time = doc.data().time;
             var service = doc.data().service;
@@ -101,6 +105,13 @@ async function showDayEvents(month,day){
 
     });
 }
+
+function getMonth(month){
+    console.log(month)
+    var months = ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
+    month = months.indexOf(month)+1;
+    return month;
+}   
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;

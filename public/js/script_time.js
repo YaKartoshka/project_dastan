@@ -124,7 +124,10 @@ async function addEvent() {
     })
 }
 async function showEvents() {
+    var fullDate=$('#monthDisplay').text();
+    var chosen_month=fullDate.split(" ");
     
+    chosen_month=getMonth(chosen_month[0]);
     var chosen_day=$('.dayChosen').text();
     var select = document.getElementById('employers');
     var cookie_data=document.cookie;
@@ -143,8 +146,9 @@ async function showEvents() {
                 var docDate=doc.data().date;
                 var full_date=docDate.split("/");
                 var docDay=full_date[0];
-                console.log(docDay,chosen_day);
-                if(docDay==chosen_day){
+                var docMonth=full_date[1];
+                console.log(docDay,chosen_day,docMonth,chosen_month);
+                if(docDay==chosen_day && chosen_month==docMonth){
                 console.log(doc.data().time,doc.data().service,selected_employee)
                 let time = doc.data().time;
                 let input = doc.data().service;
@@ -194,6 +198,12 @@ async function showEvents() {
 
 
 }
+function getMonth(month){
+    console.log(month)
+    var months = ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
+    month = months.indexOf(month)+1;
+    return month;
+}   
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);

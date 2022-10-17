@@ -49,7 +49,7 @@ function load() {
     // by using getDate we get specific number
     // by writing 0 in days we get last day of current month but we acces the next, and so can calculate days
 
-    const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+    const dateString = firstDayOfMonth.toLocaleDateString('ru-Ru', {
         weekday: 'long',
         year: 'numeric',
         month: 'numeric',
@@ -60,7 +60,7 @@ function load() {
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
     document.getElementById('monthDisplay').innerText =
-        `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+        `${dt.toLocaleDateString('ru-Ru', { month: 'long' })} ${year}`;
     //show current month in string and year in the top of calendar
 
     calendar.innerHTML = '';

@@ -98,57 +98,45 @@ app.post('/signIn', async (req, res) => {
 
 });
 
-app.post('/addEmployer', async(req,res)=>{
-const {name,surname,patronymic,quality,info}=req.body;
-const employer_data={
-    name:name,
-    surname:surname,
-    patromymic:patronymic,
-    quality:quality,
-    info:info
-}
-console.log(req.body);
-var fid=req.cookies.fid;
-const employers=fdb.collection('company').doc(`${fid}`).collection('employers');
-const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data)
-res.redirect('back');
-})
-
-app.get('/index', (req,res)=>{
-    
-    res.sendFile(path.join(__dirname + '/views/index.html'));
-
-});
-app.post('/index', (req,res)=>{
-   
-    res.sendFile(path.join(__dirname + '/views/index.html'));
-
-
-});
-app.get('/employers', (req,res)=>{
-   
-    res.sendFile(path.join(__dirname + '/views/employers.html'));
-
-});
-
-app.get('/events', (req,res)=>{
-   
-    res.sendFile(path.join(__dirname + '/views/events.html'));
-
-});
-
-app.get('/login', (req,res)=>{
-   
-    res.sendFile(path.join(__dirname + '/views/signIn.html'));
-
-});
-
-
 app.get('/signUp', (req,res)=>{
    
     res.sendFile(path.join(__dirname + '/views/signUp.html'));
 
 });
+
+
+app.get('/index', (req,res)=>{
+    if(fauth.currentUser!==null){    
+    res.sendFile(path.join(__dirname + '/views/index.html'));
+    }else{
+        res.redirect('/');
+    }
+});
+
+app.get('/employers', (req,res)=>{
+    if(fauth.currentUser!==null){  
+    res.sendFile(path.join(__dirname + '/views/employers.html'));
+    }else{
+        res.redirect('/');
+    }
+});
+
+app.get('/events', (req,res)=>{
+    if(fauth.currentUser!==null){  
+    res.sendFile(path.join(__dirname + '/views/events.html'));
+    }else{
+        res.redirect('/');
+    }
+});
+
+app.get('/login', (req,res)=>{
+    
+    res.sendFile(path.join(__dirname + '/views/signIn.html'));
+
+});
+
+
+
 
 app.get('/email_confirm', (req,res)=>{
    
