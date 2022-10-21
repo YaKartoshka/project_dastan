@@ -135,6 +135,22 @@ app.get('/login', (req,res)=>{
 
 });
 
+app.post('/addEmployer', async(req,res)=>{
+    const {name,surname,patronymic,quality,info}=req.body;
+    const employer_data={
+        name:name,
+        surname:surname,
+        patromymic:patronymic,
+        quality:quality,
+        info:info
+    }
+    console.log(req.body);
+    var fid=req.cookies.fid;
+    const employers=fdb.collection('company').doc(`${fid}`).collection('employers');
+    const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data)
+    res.redirect('back');
+    })
+    
 
 
 
