@@ -12,7 +12,7 @@ const { getAuth } = require('firebase/auth');
 const fauth=getAuth(firebase.getApp())
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
-const alert = require('alert'); 
+
 const fdb=admin.firestore();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -156,7 +156,7 @@ app.post('/addEmployer', async(req,res)=>{
 
 
 app.post('/email_confirm', (req,res)=>{
-   
+    
     res.sendFile(path.join(__dirname + '/views/email.confirm.html'));
 
 });
