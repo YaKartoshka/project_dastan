@@ -46,17 +46,18 @@ app.get('/', (req,res)=>{
 app.post('/signUp', async (req, res) => {
      const email = req.body.email;
      const password = req.body.password;
+     const company_name=req.body.company_name;
      auth.createUserWithEmailAndPassword(fauth,email,password)
-     .then((userCredential) => {
+     .then(async(userCredential) => {
         session=req.session;
         session.email=email;  
-        const new_company=fdb.collection('company').add({
-            company_name: 'test',
+        const new_company=await fdb.collection('company').add({
+            company_name: company_name,
             email: email
         });
         session.id=new_company.id;
         console.log(session.id)
-
+        res.cookie('fid',`${new_company.id}`);
         res.sendFile(path.join(__dirname + '/views/index.html'));
       })
       .catch((error) => {
@@ -77,9 +78,9 @@ app.post('/signIn', async (req, res) => {
     
     session=req.session;
     session.email=email
-    const company=await fdb.collection('company');
-    const company_qS=company.get();
-    (await company_qS).forEach(doc=>{
+    const company= fdb.collection('company');
+    const company_qS=await company.get();
+    company_qS.forEach(doc=>{
         if(doc.data().email==email){
             id=doc.id;
         }
