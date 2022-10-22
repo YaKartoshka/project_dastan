@@ -63,7 +63,7 @@ app.post('/signUp', async (req, res) => {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        res.redirect('back')
+        res.redirect('back');
       });
     
  
@@ -92,7 +92,7 @@ app.post('/signIn', async (req, res) => {
     
     var errorCode = error.code;
     var errorMessage = error.message;
-    res.redirect('back')
+    res.redirect('back');
     
   });
   
@@ -147,7 +147,7 @@ app.post('/addEmployer', async(req,res)=>{
     }
     console.log(req.body);
     var fid=req.cookies.fid;
-    const employers=fdb.collection('company').doc(`${fid}`).collection('employers');
+
     const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data)
     res.redirect('back');
     })
@@ -155,7 +155,7 @@ app.post('/addEmployer', async(req,res)=>{
 
 
 
-app.get('/email_confirm', (req,res)=>{
+app.post('/email_confirm', (req,res)=>{
    
     res.sendFile(path.join(__dirname + '/views/email.confirm.html'));
 
