@@ -41,10 +41,10 @@ function closePopStud2YES() {
         console.error("Error removing document: ", error);
     });
 }
+
 function closePopStud2NO() {
     popUp2.classList.remove("open-popstud2");
     popUpback2.classList.remove("b-popup2");
- 
 }
 
 
