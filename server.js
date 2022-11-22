@@ -105,6 +105,11 @@ app.get('/signUp', (req,res)=>{
 
 });
 
+app.get('/signIn', (req,res)=>{
+   
+    res.sendFile(path.join(__dirname + '/views/signIn.html'));
+
+});
 
 app.get('/index', (req,res)=>{
     if(fauth.currentUser!==null){    
@@ -161,6 +166,16 @@ app.post('/email_confirm', (req,res)=>{
 
 });
 
+app.get('/signOut', (req,res)=>{
+
+    auth.signOut(fauth)
+
+    auth.signOut(fauth).then(() => {
+        res.redirect('/signIn')
+      }).catch((error) => {
+        // An error happened.
+      });
+})
 
 
 app.listen(port, ()=>{
