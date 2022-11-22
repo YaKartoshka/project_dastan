@@ -454,12 +454,20 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
+ 
     background: #92a1d1;
+    position: relative;
+    height: 150px;
+    width: 150px;
+    margin: -100px auto 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+} 
+.photo .user_img {
+    height: 100%;
+    width: 100%;
+    transition: all .3s ease;
 }
-
 .user {
     margin: auto 0;
     width: 73%;

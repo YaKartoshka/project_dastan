@@ -12,13 +12,21 @@ const { getAuth } = require('firebase/auth');
 const fauth=getAuth(firebase.getApp())
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
- 
+const { json } = require('body-parser');
+const fileUpload = require('express-fileupload');
 const fdb=admin.firestore();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/css', express.static(__dirname + '/public'))
 app.use("/public", express.static(__dirname + "/public"));
-
+app.use(
+    fileUpload({
+        limits: {
+            fileSize: 20000000,
+        },
+        abortOnLimit: true,
+    })
+);
 var email="email"
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
@@ -143,6 +151,16 @@ app.get('/login', (req,res)=>{
 
 app.post('/addEmployer', async(req,res)=>{
     const {name,surname,patronymic,quality,info}=req.body;
+    var data=req.body;
+    console.log(req.files)
+    delete data.name; 
+    delete data.surname;
+    delete data.patronymic;
+    delete data.quality;
+    delete data.info;
+    delete data.avatar_img;
+    
+    var data_length = Object.keys(data).length;
     const employer_data={
         name:name,
         surname:surname,
@@ -150,10 +168,18 @@ app.post('/addEmployer', async(req,res)=>{
         quality:quality,
         info:info
     }
-    console.log(req.body);
+   
     var fid=req.cookies.fid;
-
-    const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data)
+    // const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data);
+    // var employer_id=new_employer.id;
+    // for (let i = 1; i < data_length/3 + 1; i++) {
+    //     var service_data={
+    //         service_during: data[`s_time${i}`],
+    //         service_name: data[`s_name${i}`],
+    //         service_price:data[`s_price${i}`]
+    //     }
+    //     var new_service=await fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services').add(service_data);
+    // }
     res.redirect('back');
     })
     

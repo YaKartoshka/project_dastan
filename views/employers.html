@@ -82,17 +82,26 @@
             <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
             <label class="photo">
-                <img class="user" src="/public/images/user.svg" alt="">
-                <input type="file" id="docpicker" accept=".jpg .png .pdf" value="Ho">
+                <img class="user_img" src="/public/images/user.svg" alt="">
+                <input type="file" id="docpicker" name="avatar_img" accept="image/png, image/png, image/jpeg"  class="image_upload">
             </label>
-            <form action="/addEmployer" method="post">
-            <input id="name" type="text" class="input-field" name="name" placeholder="Имя" required>
-            <input id="surname" type="text" class="input-field" name="surname" placeholder="Фамиллия" required>
-            <input id="patronymic" type="text" class="input-field" name="patronymic" placeholder="Отчество" required>
-            <input id="quality" type="text" class="input-field" name="quality" placeholder="Специальность" required>
-            <textarea id="addinfo" class="input-field addition" name="info" placeholder="Дополнительная информация" id=""
-                required></textarea>
-            <button class="submit" id="submit" type="submit" onclick="addEmployee(), closePopStud()">Добавить</button>
+            <form action="/addEmployer" method="post" >
+                <input id="name" type="text" class="input-field" name="name" placeholder="Имя" required>
+                <input id="surname" type="text" class="input-field" name="surname" placeholder="Фамиллия" required>
+                <input id="patronymic" type="text" class="input-field" name="patronymic" placeholder="Отчество" required>
+                <input id="quality" type="text" class="input-field" name="quality" placeholder="Специальность" required>
+                <div class="dropdown">
+                    <div class="service_item">
+                        <span>Услуги:</span>
+                        <button type="button" onclick="addItem()" ><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div id="services">
+        
+                    </div>
+                 </div>
+                <textarea id="addinfo" class="input-field addition" name="info" placeholder="Дополнительная информация" id=""
+                    required></textarea>
+                <button type="submit" class="submit" id="submit" onclick="addEmployee(), closePopStud()">Добавить</button>
             </form>
         </div>
     </div>

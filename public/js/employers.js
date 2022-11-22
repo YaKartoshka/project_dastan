@@ -135,3 +135,60 @@ function addEmployee() {
 
     // field.insertAdjacentHTML('afterbegin', '<div class="box"><div class="image"><img src="./img/user.svg" alt=""></div><div class="name_job">Kristina Bellis</div><div class="name_job">Парикмахер</div><p> Lorem ipsum dolor sitamet, stphen hawkin so adipisicing elit. Ratione disuja doloremque reiciendinemo.</p><div class="btns"><a href="#" class="button">Подробнее</a</div></div>');
 }
+var counter=1;
+function addItem(){
+    var exact_div = document.getElementById('services')
+    var inpName = document.createElement("input")
+    var buttonDel = document.createElement("button")
+    var inpDiv = document.createElement("div")
+    var x_i = document.createElement("i")
+    var inpPrice = document.createElement("input")
+    var inpTime = document.createElement("input")
+    var inpDiv2 = document.createElement("div")
+    var divobshii = document.createElement("div")
+    inpDiv2.classList.add("inpDiv")
+    divobshii.classList.add("inpDiv")
+    inpTime.classList.add("input-field-r")
+    inpTime.setAttribute('name',`s_time${counter}`)
+    inpPrice.classList.add("input-field-l")
+    x_i.classList.add("fa-sharp")
+    x_i.classList.add("fa-solid")
+    x_i.classList.add("fa-xmark")
+    buttonDel.innerHTML = x_i.outerHTML
+    buttonDel.classList.add("btn_del")
+    inpName.classList.add("input-field")
+    inpName.placeholder = "Название"
+    inpName.setAttribute('name',`s_name${counter}`)
+    inpPrice.placeholder = "Стоимость"
+    inpPrice.setAttribute('name',`s_price${counter}`)
+
+    inpTime.placeholder = "Время"
+    inpDiv2.innerHTML = inpPrice.outerHTML + inpTime.outerHTML
+    inpDiv.innerHTML = inpName.outerHTML + inpDiv2.outerHTML
+    divobshii.innerHTML = inpDiv.outerHTML + buttonDel.outerHTML
+    exact_div.insertAdjacentElement('afterend',divobshii)
+    $(".btn_del").click(function () {
+        $(this).parent().remove()
+    });
+    counter++;
+}
+
+function readURL(input)
+{
+    if(input.files && input.files[0]){
+        var reader= new FileReader();
+        reader.onload=function(e)
+        {
+            var fileurl=e.target.result;
+            $('.user_img').attr('src',fileurl);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$(".image_upload").on('change',function(){
+readURL(this);
+});
+$(".photo").on('click',function(){
+$(".image_upload").click();
+});
+/***AVATAR SCRIPT***/
