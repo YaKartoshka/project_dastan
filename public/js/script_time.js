@@ -130,7 +130,7 @@ async function showEvents() {
     chosen_month=getMonth(chosen_month[0]);
     var chosen_day=$('.dayChosen').text();
     var select = document.getElementById('employers');
-    var cookie_data=document.cookie;
+   
     
     var fid=getCookie('fid')
     
