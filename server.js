@@ -170,16 +170,16 @@ app.post('/addEmployer', async(req,res)=>{
     }
    
     var fid=req.cookies.fid;
-    // const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data);
-    // var employer_id=new_employer.id;
-    // for (let i = 1; i < data_length/3 + 1; i++) {
-    //     var service_data={
-    //         service_during: data[`s_time${i}`],
-    //         service_name: data[`s_name${i}`],
-    //         service_price:data[`s_price${i}`]
-    //     }
-    //     var new_service=await fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services').add(service_data);
-    // }
+    const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data);
+    var employer_id=new_employer.id;
+    for (let i = 1; i < data_length/3 + 1; i++) {
+        var service_data={
+            service_during: data[`s_time${i}`],
+            service_name: data[`s_name${i}`],
+            service_price:data[`s_price${i}`]
+        }
+        var new_service=await fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services').add(service_data);
+    }
     res.redirect('back');
     })
     
