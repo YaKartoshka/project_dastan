@@ -38,7 +38,7 @@ async function showDayEvents(month,day){
     var chosen_month=fullDate.split(" ");
     
     chosen_month=getMonth(chosen_month[0]);
-    const events_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule');
+    const events_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule').orderBy('time','asc');
     const events_qS=await events_sch.get();
      events_qS.forEach(doc => {
         var docDate=doc.data().date;
@@ -51,6 +51,8 @@ async function showDayEvents(month,day){
             var time = doc.data().time;
             var service = doc.data().service;
             var employer=doc.data().employer_name;
+            var user_number=doc.data().user_number;
+            var user_name=doc.data().user_name;
             var newDiv = document.createElement("div");
             var newTime = document.createElement("div");
             var newEName=document.createElement("div");
@@ -59,12 +61,12 @@ async function showDayEvents(month,day){
             var btnClose = document.createElement("button");
             var newLink = document.createElement("a");
             newDiv.classList.add('event')
-            newDiv.id = 'event_id';
+            newDiv.id = doc.id;
             newTime.classList.add('time');
             newEName.classList.add('emloyerName')
             newTitle.classList.add('eventTitle')
-            btnClose.classList.add('delbtn');
-            btnClose.id = 'remove';
+            //btnClose.classList.add('delbtn');
+            //btnClose.id = 'remove';
             newLink.classList.add('fa-solid')
             newLink.classList.add('fa-circle-xmark')
             newDel.classList.add('delete');
@@ -72,12 +74,12 @@ async function showDayEvents(month,day){
             newLink.href = '#';
             newTime.innerHTML = time;
             newEName.innerHTML = employer;
-            newTitle.innerHTML= service
-            btnClose.innerHTML = newLink.outerHTML;
-            newDel.innerHTML = btnClose.outerHTML;
-            newDiv.innerHTML =  newTime.outerHTML+ newTitle.outerHTML + newEName.outerHTML + newDel.outerHTML;
+            newTitle.innerHTML= `${service} | ${user_name} | ${user_number} | ${employer}`
+            //btnClose.innerHTML = newLink.outerHTML;
+            //newDel.innerHTML = btnClose.outerHTML;
+            newDiv.innerHTML =  newTime.outerHTML+ newTitle.outerHTML ;
             
-            events_list.insertAdjacentElement('afterbegin', newDiv);
+            events_list.insertAdjacentElement('beforeend', newDiv);
             console.log(6);
             $('.event').on("click", function () {
                 delId = ($(this).attr('id'));

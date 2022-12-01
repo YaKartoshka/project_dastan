@@ -99,7 +99,7 @@
             <div id="calendar"></div>
         </div>
     </div>
-    <div class="popback" id="opened">
+     <div class="popback" id="opened">
         <div class="popUp" id="popStud">
             <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
@@ -107,10 +107,20 @@
                 <div class="clickedDate" id="clickedDate">--/--/--</div>
                 <input type="time" name="from" class="timer" id="time" checked>
             </div>
-            <input id="eventTitleInput" placeholder="Event Title">
+            <label for="eventTitleInput">Тип Услуги</label>
+            <input class="eventTitleInput" id="eventTitleInput" placeholder="Тип Услуги">
+            <label for="phone">Телефон клиента</label>
+            <input class="eventTitleInput" id="phone" type="tel" placeholder="Номер телефона">
+            <label for="name">Имя клиента</label>
+            <input class="eventTitleInput" id="name" placeholder="Имя">
+            <label for="surname">фамилия клиента</label>
+            <input class="eventTitleInput" id="surname" placeholder="Фамилия">
+            <label for="comment">Комментарий</label>
+            <textarea class="text" name="comment" id="comment" cols="30" rows="5"></textarea>
             <button class="submit" id="submit" type="button" onclick="addEvent(), closePopStud()">Добавить</button>
         </div>
     </div>
+    
     
     <div class="popback2" id="opened2">
         <div class="popUp2" id="popStud2">

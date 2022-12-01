@@ -8,7 +8,7 @@ const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
-const weekdays = ['Sunday', 'Monday', 'Thuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 // function openModal(date) {
 //     clicked = date;
@@ -49,7 +49,7 @@ function load() {
     // by using getDate we get specific number
     // by writing 0 in days we get last day of current month but we acces the next, and so can calculate days
 
-    const dateString = firstDayOfMonth.toLocaleDateString('ru-Ru', {
+    const dateString = firstDayOfMonth.toLocaleDateString('en-Ru', {
         weekday: 'long',
         year: 'numeric',
         month: 'numeric',

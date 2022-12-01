@@ -76,11 +76,15 @@ async function addEvent() {
     var fid=fid_data[1];
     const events=document.getElementById("events")
     
-    var select = document.getElementById('employers');
-    var selected_employee = select.options[select.selectedIndex].text;
+    let select = document.getElementById('employers');
+    let selected_employee = select.options[select.selectedIndex].text;
     let time = document.getElementById('time').value;
     let date=document.getElementById('clickedDate').innerHTML;
-    let input = document.getElementById('eventTitleInput').value;
+    let service = document.getElementById('eventTitleInput').value;
+    let user_number=document.getElementById('phone').value;
+    let user_name=document.getElementById('name').value;
+    let user_surname=document.getElementById('surname').value;
+    let comment=document.getElementById('comment').value;
     var newDiv = document.createElement("div");
     var newTime = document.createElement("span");
     var newInput = document.createElement("p");
@@ -99,7 +103,7 @@ async function addEvent() {
     newDel.setAttribute('onclick', "removeCard(this.id)");
     newLink.href = '#';
     newTime.innerHTML = time;
-    newInput.innerHTML = input;
+    newInput.innerHTML = `${service} | ${user_name} | ${user_number}`;
     btnClose.innerHTML = newLink.outerHTML;
     newDel.innerHTML = btnClose.outerHTML;
     newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
@@ -107,10 +111,13 @@ async function addEvent() {
     var data={
         time:time,
         date:date,
-        service:input,
-        employer_name:selected_employee
+        service:service,
+        employer_name:selected_employee,
+        comment: comment,
+        user_number: user_number,
+        user_name:user_name,
+        user_surname:user_surname
     }
- 
     const new_event=await fdb.collection('company').doc(`${fid}`).collection('employers_schedule').add(data);
     $('.event').on("click", function () {
         delId = ($(this).attr('id'));
@@ -122,6 +129,11 @@ async function addEvent() {
            // this.click = openPopStud2();
         })
     })
+    document.getElementById("clickedDate").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("surname").value = "";
+    document.getElementById("comment").value = "";
 }
 async function showEvents() {
     var fullDate=$('#monthDisplay').text();
@@ -151,7 +163,9 @@ async function showEvents() {
                 if(docDay==chosen_day && chosen_month==docMonth){
                 console.log(doc.data().time,doc.data().service,selected_employee)
                 let time = doc.data().time;
-                let input = doc.data().service;
+                let service = doc.data().service;
+                let user_name=doc.data().user_name;
+                let user_number=doc.data().user_number;
                 var newDiv = document.createElement("div");
                 var newTime = document.createElement("span");
                 var newInput = document.createElement("p");
@@ -166,15 +180,15 @@ async function showEvents() {
                 btnClose.id = 'remove';
                 newLink.classList.add('fa-solid')
                 newLink.classList.add('fa-circle-xmark')
-                newDel.classList.add('delete');
-                newDel.id=doc.id;
-                newDel.setAttribute('onclick', "removeCard(this.id)");
+                 newDel.classList.add('delete');
+                 newDel.id=doc.id;
+                 newDel.setAttribute('onclick', "removeCard(this.id)");
                 newLink.href = '#';
                 newTime.innerHTML = time;
-                newInput.innerHTML = input;
+                newInput.innerHTML = `${service} | ${user_name} | ${user_number}`;
                 btnClose.innerHTML = newLink.outerHTML;
                 newDel.innerHTML = btnClose.outerHTML;
-                newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
+                newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML+newDel.outerHTML;
                 events.insertAdjacentElement('beforeend', newDiv);
                 $('.event').on("click", function () {
                     delId = ($(this).attr('id'));
