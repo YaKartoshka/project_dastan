@@ -1,5 +1,3 @@
-
-
 let popUp = document.getElementById("popStud");
 let popUpback = document.getElementById("opened");
 let field=document.getElementById('field')
@@ -99,40 +97,50 @@ function addEmployee() {
     let patronymic = document.getElementById('patronymic').value // отчество в карточках не отображается
     let quality = document.getElementById('quality').value
     let addinfo = document.getElementById('addinfo').value
-    var newDiv = document.createElement("div");
-    var newImg = document.createElement("div");
-    var newName = document.createElement("div");
-    var nname = document.createElement("div");
-    var ssurname = document.createElement("div");
-    var newQuality = document.createElement("div");
-    var newAddInfo = document.createElement("p");
-    var btnMore = document.createElement("button");
-    var newLink = document.createElement("a");
-    var Img = document.createElement("img");
+    if(name==''){
+        document.getElementById('name').focus();
+    }else if(surname==''){
+        document.getElementById('surname').focus();
+    }else if(patronymic==''){
+        document.getElementById('patronymic').focus();
+    }else if(quality==''){
+        document.getElementById('quality').focus();
+    }else{
+        var newDiv = document.createElement("div");
+        var newImg = document.createElement("div");
+        var newName = document.createElement("div");
+        var nname = document.createElement("div");
+        var ssurname = document.createElement("div");
+        var newQuality = document.createElement("div");
+        var newAddInfo = document.createElement("p");
+        var btnMore = document.createElement("button");
+        var newLink = document.createElement("a");
+        var Img = document.createElement("img");
 
-    Img.src = '/public/images/user.svg';
-    newDiv.classList.add('box');
-    newImg.classList.add('image');
-    nname.classList.add('name_job');
-    ssurname.classList.add('name_job');
-    newName.classList.add('name');
-    newQuality.classList.add('name_job');
-    btnMore.classList.add('btns');
-    newLink.classList.add('button');
-    newLink.href = '#';
-    newImg.innerHTML = Img.outerHTML;
-    nname.innerHTML = name;
-    ssurname.innerHTML = surname;
-    newName.innerHTML = nname.outerHTML + ssurname.outerHTML;
-    newQuality.innerHTML = quality;
-    newAddInfo.innerHTML = addinfo;
-    newLink.innerHTML = 'Подробнее';
-    btnMore.innerHTML = newLink.outerHTML;
+        Img.src = '/public/images/user.svg';
+        newDiv.classList.add('box');
+        newImg.classList.add('image');
+        nname.classList.add('name_job');
+        ssurname.classList.add('name_job');
+        newName.classList.add('name');
+        newQuality.classList.add('name_job');
+        btnMore.classList.add('btns');
+        newLink.classList.add('button');
+        newLink.href = '#';
+        newImg.innerHTML = Img.outerHTML;
+        nname.innerHTML = name;
+        ssurname.innerHTML = surname;
+        newName.innerHTML = nname.outerHTML + ssurname.outerHTML;
+        newQuality.innerHTML = quality;
+        newAddInfo.innerHTML = addinfo;
+        newLink.innerHTML = 'Подробнее';
+        btnMore.innerHTML = newLink.outerHTML;
 
-    newDiv.innerHTML = newImg.outerHTML + newName.outerHTML + newQuality.outerHTML + newAddInfo.outerHTML + btnMore.outerHTML;
-    
-    field.insertAdjacentElement('afterbegin', newDiv);
-
+        newDiv.innerHTML = newImg.outerHTML + newName.outerHTML + newQuality.outerHTML + newAddInfo.outerHTML + btnMore.outerHTML;
+        
+        field.insertAdjacentElement('afterbegin', newDiv);
+        closePopStud()
+    }
     // field.insertAdjacentHTML('afterbegin', '<div class="box"><div class="image"><img src="./img/user.svg" alt=""></div><div class="name_job">Kristina Bellis</div><div class="name_job">Парикмахер</div><p> Lorem ipsum dolor sitamet, stphen hawkin so adipisicing elit. Ratione disuja doloremque reiciendinemo.</p><div class="btns"><a href="#" class="button">Подробнее</a</div></div>');
 }
 var counter=1;
