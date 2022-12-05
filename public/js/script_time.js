@@ -85,6 +85,21 @@ async function addEvent() {
     let user_name=document.getElementById('name').value;
     let user_surname=document.getElementById('surname').value;
     let comment=document.getElementById('comment').value;
+    if(time==''){   
+        document.getElementById('time').focus();
+    }else if(service==''){
+        document.getElementById('eventTitleInput').focus();
+    }else if(user_number==''){
+        document.getElementById('phone').focus();
+    }else if(user_name==''){
+        document.getElementById('name').focus();
+    }else if(user_surname==''){
+        document.getElementById('surname').focus();
+    }else{
+    
+    if(comment==undefined){
+        comment=null;
+    }
     var newDiv = document.createElement("div");
     var newTime = document.createElement("span");
     var newInput = document.createElement("p");
@@ -108,6 +123,10 @@ async function addEvent() {
     newDel.innerHTML = btnClose.outerHTML;
     newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
     events.insertAdjacentElement('beforeend', newDiv);
+    closePopStud();
+    if(comment==undefined){
+        comment=" ";
+    }
     var data={
         time:time,
         date:date,
@@ -134,6 +153,8 @@ async function addEvent() {
     document.getElementById("name").value = "";
     document.getElementById("surname").value = "";
     document.getElementById("comment").value = "";
+    
+    }
 }
 async function showEvents() {
     var fullDate=$('#monthDisplay').text();
@@ -254,13 +275,15 @@ function removeCard(click_id){
     const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers');
     const employers_qS=await employers_sch.get();
     employers_qS.forEach(doc=>{
-        
         var newOption = document.createElement("option");
         newOption.value=`${doc.data().name} ${doc.data().surname}`;
         newOption.text=`${doc.data().name} ${doc.data().surname}`;
         newOption.classList.add('option')
         selection.options.add(newOption,0);
     });
+    if(selection.length==0){
+        document.getElementById('add-event-btn').classList.add('disabled')
+    }
     showEvents();
   }
   

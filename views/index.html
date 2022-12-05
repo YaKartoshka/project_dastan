@@ -71,7 +71,7 @@
 
             </div>
             <div class="add">
-                <button onclick="openPopStud()">
+                <button onclick="openPopStud()" id="add-event-btn">
                     <a href="#" id="add" class="fa-solid fa-circle-plus"></a>
                 </button>
             </div>
@@ -105,19 +105,19 @@
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
             <div class="popDate">
                 <div class="clickedDate" id="clickedDate">--/--/--</div>
-                <input type="time" name="from" class="timer" id="time" checked>
+                <input type="time" name="from" class="timer" id="time" checked required>
             </div>
             <label for="eventTitleInput">Тип Услуги</label>
-            <input class="eventTitleInput" id="eventTitleInput" placeholder="Тип Услуги">
+            <input class="eventTitleInput" id="eventTitleInput" type="text" placeholder="Тип Услуги" required>
             <label for="phone">Телефон клиента</label>
-            <input class="eventTitleInput" id="phone" type="tel" placeholder="Номер телефона">
+            <input class="eventTitleInput" id="phone" type="tel" placeholder="Номер телефона" required>
             <label for="name">Имя клиента</label>
-            <input class="eventTitleInput" id="name" placeholder="Имя">
+            <input class="eventTitleInput" id="name" type="text" placeholder="Имя" required>
             <label for="surname">фамилия клиента</label>
-            <input class="eventTitleInput" id="surname" placeholder="Фамилия">
+            <input class="eventTitleInput" id="surname" type="text" placeholder="Фамилия" required>
             <label for="comment">Комментарий</label>
-            <textarea class="text" name="comment" id="comment" cols="30" rows="5"></textarea>
-            <button class="submit" id="submit" type="button" onclick="addEvent(), closePopStud()">Добавить</button>
+            <textarea class="text" name="comment" id="comment" cols="30" rows="5" required></textarea>
+            <button class="submit" id="submit" type="button" onclick="addEvent()">Добавить</button>
         </div>
     </div>
     

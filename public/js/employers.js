@@ -12,7 +12,6 @@ function closePopStud() {
 }
 $(document).ready(function () {
 
-
     var flag = false;
     $("#submit").click(function () {
         flag = true;
