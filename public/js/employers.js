@@ -1,6 +1,7 @@
 let popUp = document.getElementById("popStud");
 let popUpback = document.getElementById("opened");
 let field=document.getElementById('field')
+var counter=1;
 function openPopStud() {
     popUp.classList.add("open-popstud");
     popUpback.classList.add("b-popup");
@@ -56,8 +57,12 @@ async function showEmployers() {
         var btnMore = document.createElement("button");
         var newLink = document.createElement("a");
         var Img = document.createElement("img");
-
-        Img.src = '/public/images/user.svg';
+        if(doc.data().profile_image==null || doc.data().profile_image==undefined){
+            Img.src = '/public/images/user.svg';
+        }else{
+            Img.src = doc.data().profile_image;
+        }
+        
         newDiv.classList.add('box');
         newImg.classList.add('image');
         nname.classList.add('name_job');
@@ -89,6 +94,7 @@ function getCookie(name) {
   }
 
 showEmployers();
+
 
 function addEmployee() {
     let name = document.getElementById('name').value;
@@ -138,12 +144,15 @@ function addEmployee() {
         newDiv.innerHTML = newImg.outerHTML + newName.outerHTML + newQuality.outerHTML + newAddInfo.outerHTML + btnMore.outerHTML;
         
         field.insertAdjacentElement('afterbegin', newDiv);
+        counter=1;
         closePopStud()
-    }
+    }   
+
     // field.insertAdjacentHTML('afterbegin', '<div class="box"><div class="image"><img src="./img/user.svg" alt=""></div><div class="name_job">Kristina Bellis</div><div class="name_job">Парикмахер</div><p> Lorem ipsum dolor sitamet, stphen hawkin so adipisicing elit. Ratione disuja doloremque reiciendinemo.</p><div class="btns"><a href="#" class="button">Подробнее</a</div></div>');
 }
-var counter=1;
+
 function addItem(){
+    console.log(document.getElementById('docpicker').value)
     var exact_div = document.getElementById('services')
     var inpName = document.createElement("input")
     var buttonDel = document.createElement("button")
@@ -173,7 +182,8 @@ function addItem(){
     inpDiv2.innerHTML = inpPrice.outerHTML + inpTime.outerHTML
     inpDiv.innerHTML = inpName.outerHTML + inpDiv2.outerHTML
     divobshii.innerHTML = inpDiv.outerHTML + buttonDel.outerHTML
-    exact_div.insertAdjacentElement('afterend',divobshii)
+    exact_div.innerHTML += divobshii.outerHTML
+    // exact_div.insertAdjacentElement('afterend',divobshii)
     $(".btn_del").click(function () {
         $(this).parent().remove()
     });

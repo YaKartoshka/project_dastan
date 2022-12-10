@@ -195,7 +195,10 @@
     font-size: 45px;
     color: #17c0eb;
 }
-
+.user_img{
+    background-size: contain;
+    border-radius: 50%;
+}
 .container .box .image {
     
     margin: 10px 0;
@@ -486,7 +489,7 @@ input[type="file"] {
     font-weight: bold;
 }
 #services{
-    max-height: 220px;
+    max-height: 150px;
     height: 100%;
     overflow-y: auto;
 }

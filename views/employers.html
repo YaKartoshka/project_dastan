@@ -81,11 +81,12 @@
         <div class="popUp" id="popStud">
             <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
-            <label class="photo">
-                <img class="user_img" src="/public/images/user.svg" alt="">
-                <input type="file" id="docpicker" name="avatar_img" accept="image/png, image/png, image/jpeg"  class="image_upload">
-            </label>
-            <form action="/addEmployer" method="post" >
+           
+            <form action="/addEmployer" method="post" enctype="multipart/form-data" >
+                <label class="photo">
+                    <img class="user_img" src="/public/images/user.svg" alt="">
+                    <input type="file" id="docpicker" name="avatar_img" accept="image/jpg, image/png, image/jpeg"  class="image_upload">
+                </label>
                 <input id="name" type="text" class="input-field" name="name" placeholder="Имя" required>
                 <input id="surname" type="text" class="input-field" name="surname" placeholder="Фамиллия" required>
                 <input id="patronymic" type="text" class="input-field" name="patronymic" placeholder="Отчество" required>
