@@ -171,11 +171,16 @@ app.get('/login', (req,res)=>{
 
 });
 
-app.post('/addEmployer', upload.single('avatar_img') ,async(req,res,next)=>{
+app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
+
     const {name,surname,patronymic,quality,info}=req.body;
-    const image=req.file.path;
+    if(req.file==undefined){
+        var image=null;
+    }else{
+        var image=req.file.path;
+    }
     const data=req.body;
-    console.log(image)
+    
     if(data.name==undefined || data.surname==undefined ||data.quality==undefined ||data.patronymic==undefined){
         res.redirect('/employers');
     }else{
@@ -185,7 +190,7 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res,next)=>{
         delete data.quality;
         delete data.info;
         delete data.avatar_img;
-        
+       
         var data_length = Object.keys(data).length;
         const employer_data={
             name:name,
@@ -194,10 +199,12 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res,next)=>{
             quality:quality,
             info:info
         }
+        console.log(employer_data)
         var fid=req.cookies.fid;
         const storage=admin.storage().bucket('gs://database-zapis.appspot.com')
         const new_employer=await fdb.collection('company').doc(`${fid}`).collection('employers').add(employer_data);
         var employer_id=new_employer.id;
+        console.log(employer_id)
         const uploadImage=async()=>{
             const metadata = {
                 metadata: {
@@ -219,7 +226,7 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res,next)=>{
                 profile_image:image_url
             });
         }
-        if(image==undefined){
+        if(image==undefined || image==null){
             const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
                 profile_image:null
             });

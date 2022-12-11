@@ -102,14 +102,17 @@ function addEmployee() {
     let patronymic = document.getElementById('patronymic').value // отчество в карточках не отображается
     let quality = document.getElementById('quality').value
     let addinfo = document.getElementById('addinfo').value
-    if(name==''){
-        document.getElementById('name').focus();
-    }else if(surname==''){
-        document.getElementById('surname').focus();
-    }else if(patronymic==''){
-        document.getElementById('patronymic').focus();
-    }else if(quality==''){
-        document.getElementById('quality').focus();
+    let profile_image=document.querySelector('.user_img').src;
+    var isValid=true;
+    $(".imp_input").each(function() {
+    var element = $(this);
+    if (element.val() == "") {
+        isValid = false;
+    }
+    });
+    console.log(isValid)
+    if(isValid==false){
+
     }else{
         var newDiv = document.createElement("div");
         var newImg = document.createElement("div");
@@ -122,7 +125,7 @@ function addEmployee() {
         var newLink = document.createElement("a");
         var Img = document.createElement("img");
 
-        Img.src = '/public/images/user.svg';
+        Img.src = profile_image;
         newDiv.classList.add('box');
         newImg.classList.add('image');
         nname.classList.add('name_job');
@@ -143,11 +146,11 @@ function addEmployee() {
 
         newDiv.innerHTML = newImg.outerHTML + newName.outerHTML + newQuality.outerHTML + newAddInfo.outerHTML + btnMore.outerHTML;
         
-        field.insertAdjacentElement('afterbegin', newDiv);
+         field.insertAdjacentElement('afterbegin', newDiv);
         counter=1;
         closePopStud()
     }   
-
+    
     // field.insertAdjacentHTML('afterbegin', '<div class="box"><div class="image"><img src="./img/user.svg" alt=""></div><div class="name_job">Kristina Bellis</div><div class="name_job">Парикмахер</div><p> Lorem ipsum dolor sitamet, stphen hawkin so adipisicing elit. Ratione disuja doloremque reiciendinemo.</p><div class="btns"><a href="#" class="button">Подробнее</a</div></div>');
 }
 
@@ -165,25 +168,34 @@ function addItem(){
     inpDiv2.classList.add("inpDiv")
     divobshii.classList.add("inpDiv")
     inpTime.classList.add("input-field-r")
+    inpTime.classList.add("imp_input")
     inpTime.setAttribute('name',`s_time${counter}`)
-    inpPrice.classList.add("input-field-l")
+    inpTime.setAttribute('type','text')
+    inpTime.required=true;
+    inpPrice.classList.add("input-field-l");
+    inpPrice.classList.add("imp_input")
+    inpPrice.placeholder = "Стоимость"
+    inpPrice.setAttribute('name',`s_price${counter}`)
+    inpPrice.setAttribute('type','text')
+    inpPrice.required=true;
     x_i.classList.add("fa-sharp")
     x_i.classList.add("fa-solid")
     x_i.classList.add("fa-xmark")
     buttonDel.innerHTML = x_i.outerHTML
     buttonDel.classList.add("btn_del")
     inpName.classList.add("input-field")
+    inpName.classList.add("imp_input")
     inpName.placeholder = "Название"
     inpName.setAttribute('name',`s_name${counter}`)
-    inpPrice.placeholder = "Стоимость"
-    inpPrice.setAttribute('name',`s_price${counter}`)
+    inpName.setAttribute('type','text')
+    inpName.required=true;
 
     inpTime.placeholder = "Время"
     inpDiv2.innerHTML = inpPrice.outerHTML + inpTime.outerHTML
     inpDiv.innerHTML = inpName.outerHTML + inpDiv2.outerHTML
     divobshii.innerHTML = inpDiv.outerHTML + buttonDel.outerHTML
-    exact_div.innerHTML += divobshii.outerHTML
-    // exact_div.insertAdjacentElement('afterend',divobshii)
+    //exact_div.innerHTML += divobshii.outerHTML
+     exact_div.insertAdjacentElement('beforeend',divobshii)
     $(".btn_del").click(function () {
         $(this).parent().remove()
     });

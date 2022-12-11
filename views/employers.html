@@ -82,15 +82,15 @@
             <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
                 onclick="closePopStud()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
            
-            <form action="/addEmployer" method="post" enctype="multipart/form-data" >
+            <form action="/addEmployer" method="post" enctype="multipart/form-data">
                 <label class="photo">
                     <img class="user_img" src="/public/images/user.svg" alt="">
-                    <input type="file" id="docpicker" name="avatar_img" accept="image/jpg, image/png, image/jpeg"  class="image_upload">
+                    <input type="file" id="docpicker" name="avatar_img" accept="image/jpg, image/png, image/jpeg" class="image_upload">
                 </label>
-                <input id="name" type="text" class="input-field" name="name" placeholder="Имя" required>
-                <input id="surname" type="text" class="input-field" name="surname" placeholder="Фамиллия" required>
-                <input id="patronymic" type="text" class="input-field" name="patronymic" placeholder="Отчество" required>
-                <input id="quality" type="text" class="input-field" name="quality" placeholder="Специальность" required>
+                <input id="name" type="text" class="input-field imp_input" name="name" placeholder="Имя" required>
+                <input id="surname" type="text" class="input-field imp_input" name="surname" placeholder="Фамиллия" required>
+                <input id="patronymic" type="text" class="input-field imp_input" name="patronymic" placeholder="Отчество" required>
+                <input id="quality" type="text" class="input-field imp_input" name="quality" placeholder="Специальность" required>
                 <div class="dropdown">
                     <div class="service_item">
                         <span>Услуги:</span>
@@ -100,8 +100,8 @@
         
                     </div>
                  </div>
-                <textarea id="addinfo" class="input-field addition" name="info" placeholder="Дополнительная информация" id=""
-                    required></textarea>
+                <textarea id="addinfo" class="input-field addition" name="info" placeholder="Дополнительная информация"
+                    ></textarea>
                 <button type="submit" class="submit" id="submit" onclick="addEmployee()">Добавить</button>
             </form>
         </div>
