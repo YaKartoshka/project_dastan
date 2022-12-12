@@ -123,7 +123,7 @@ async function addEvent() {
     newDel.innerHTML = btnClose.outerHTML;
     newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
     events.insertAdjacentElement('beforeend', newDiv);
-    closePopStud();
+        closePopStud();
     if(comment==undefined){
         comment=" ";
     }
