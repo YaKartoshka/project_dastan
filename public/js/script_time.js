@@ -11,6 +11,13 @@ var currentMonth=$('#monthDisplay').text();
 function openPopStud() {
     popUp.classList.add("open-popstud");
     popUpback.classList.add("b-popup");
+    var current_day=document.querySelector('.dayChosen').innerHTML;
+    var fullDate=$('#monthDisplay').text();
+    var current_mY=fullDate.split(" ");
+    var current_month=getMonth(current_mY[0]);
+    var current_year=current_mY[1];
+    var current_date=document.getElementById('clickedDate');
+    current_date.innerHTML=`${current_day}/${current_month}/${current_year}`
 }
 
 function closePopStud() {
