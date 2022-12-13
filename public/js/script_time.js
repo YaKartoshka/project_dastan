@@ -30,9 +30,7 @@ function openPopStud2(clicked_id) {
 function closePopStud2YES() {
     popUp2.classList.remove("open-popstud2");
     popUpback2.classList.remove("b-popup2");
-    var cookie_data=document.cookie;
-    var fid_data=cookie_data.split("=");
-    var fid=fid_data[1];
+    var fid=getCookie('fid')
      const child_card=document.getElementById(clicked_id);
      child_card.parentElement.remove();
      fdb.collection('company').doc(`${fid}`).collection("employers_schedule").doc(`${clicked_id}`).delete().then(() => {
@@ -72,8 +70,7 @@ $(document).ready(function () {
 async function addEvent() {
 
     var cookie_data=document.cookie;
-    var fid_data=cookie_data.split("=");
-    var fid=fid_data[1];
+    var fid=getCookie('fid')
     const events=document.getElementById("events")
     
     let select = document.getElementById('employers');
@@ -124,9 +121,6 @@ async function addEvent() {
     newDiv.innerHTML = newTime.outerHTML + newInput.outerHTML + newDel.outerHTML;
     events.insertAdjacentElement('beforeend', newDiv);
         closePopStud();
-    if(comment==undefined){
-        comment=" ";
-    }
     var data={
         time:time,
         date:date,
@@ -137,7 +131,9 @@ async function addEvent() {
         user_name:user_name,
         user_surname:user_surname
     }
+    console.log(data)
     const new_event=await fdb.collection('company').doc(`${fid}`).collection('employers_schedule').add(data);
+    console.log(fid)
     $('.event').on("click", function () {
         delId = ($(this).attr('id'));
         

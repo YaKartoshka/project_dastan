@@ -174,8 +174,10 @@ app.get('/login', (req,res)=>{
 app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
 
     const {name,surname,patronymic,quality,info}=req.body;
-    if(req.file==undefined){
+    console.log(req.file)
+    if(req.file==undefined || req.file==null){
         var image=null;
+        console.log('error')
     }else{
         var image=req.file.path;
     }
@@ -225,13 +227,22 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
             const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
                 profile_image:image_url
             });
+            fs.unlink(image, function (err) {
+                if (err) {
+                  console.error(err);
+                } else{
+                    console.log()
+                }
+              });
         }
+        console.log(image)
         if(image==undefined || image==null){
             const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
                 profile_image:null
             });
         }else{
             uploadImage()
+            
         }
 
         for (let i = 1; i < data_length/3 + 1; i++) {
@@ -242,13 +253,7 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
             }
             var new_service=await fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services').add(service_data);
         }
-        fs.unlink(image, function (err) {
-            if (err) {
-              console.error(err);
-            } else{
-                console.log()
-            }
-          });
+        
         res.redirect('back');
     }
     
