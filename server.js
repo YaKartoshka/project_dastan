@@ -195,10 +195,10 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
        
         var data_length = Object.keys(data).length;
         const employer_data={
-            name:name,
-            surname:surname,
+            name:name.trim(),
+            surname:surname.trim(),
             patromymic:patronymic,
-            quality:quality,
+            quality:quality.trim(),
             info:info
         }
         console.log(employer_data)
@@ -247,9 +247,9 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
 
         for (let i = 1; i < data_length/3 + 1; i++) {
             var service_data={
-                service_during: data[`s_time${i}`],
-                service_name: data[`s_name${i}`],
-                service_price:data[`s_price${i}`]
+                service_during: data[`s_time${i}`].trim(),
+                service_name: data[`s_name${i}`].trim(),
+                service_price:data[`s_price${i}`].trim()
             }
             var new_service=await fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services').add(service_data);
         }

@@ -6,7 +6,11 @@ body {
     background-color: #FFFCFF;
 }
 
-
+#events{
+    max-height: 20rem;
+    height: 100%;
+    overflow-y: auto;
+  }
 
 .navbar-brand {
 

@@ -174,6 +174,7 @@ async function showEvents() {
     const employers_sch=fdb.collection('company').doc(`${fid}`).collection('employers_schedule').orderBy('time','asc');
     //const employers_qS=await employers_sch.get();
     var selected_employee =await select.options[select.selectedIndex].text;
+    console.log(selected_employee)
     employers_sch.onSnapshot(qS=>{
         remove();
         
@@ -253,7 +254,6 @@ showEmloyersList();
 
 
 function remove(){
-    console.log('remove');
     var cards = document.querySelectorAll('.event');
     cards.forEach(card=>{
         card.remove();

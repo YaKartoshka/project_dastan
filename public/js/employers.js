@@ -41,7 +41,6 @@ async function showEmployers() {
     
     let employers_qS=await employers.get();
     employers_qS.forEach(doc => {
-        console.log
         let name = doc.data().name
         let surname = doc.data().surname
         let patronymic = doc.data().patronymic // отчество в карточках не отображается
@@ -106,11 +105,11 @@ function addEmployee() {
     var isValid=true;
     $(".imp_input").each(function() {
     var element = $(this);
-    if (element.val() == "") {
+    console.log(element.val())
+    if (element.val().trim() == "") {
         isValid = false;
     }
     });
-    console.log(isValid)
     if(isValid==false){
 
     }else{
@@ -155,7 +154,7 @@ function addEmployee() {
 }
 
 function addItem(){
-    console.log(document.getElementById('docpicker').value)
+
     var exact_div = document.getElementById('services')
     var inpName = document.createElement("input")
     var buttonDel = document.createElement("button")
