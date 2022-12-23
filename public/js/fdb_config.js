@@ -1,12 +1,13 @@
-console.log('started');
-        const firebaseConfig = {
-        apiKey: "AIzaSyCae2s-xNeb7UZHjPSGySkwviiWaMp7F0c",
-        authDomain: "database-zapis.firebaseapp.com",
-        projectId: "database-zapis",
-        storageBucket: "database-zapis.appspot.com",
-        messagingSenderId: "543722776859",
-        appId: "1:543722776859:web:f1b3279f70c9dead094bbe",
-        measurementId: "G-KYXF6JJBRY"
-        };
-         firebase.initializeApp(firebaseConfig);
-         let fdb= firebase.firestore();
+var _0x7f35=["\x73\x74\x61\x72\x74\x65\x64","\x6C\x6F\x67","\x41\x49\x7A\x61\x53\x79\x43\x61\x65\x32\x73\x2D\x78\x4E\x65\x62\x37\x55\x5A\x48\x6A\x50\x53\x47\x79\x53\x6B\x77\x76\x69\x69\x57\x61\x4D\x70\x37\x46\x30\x63","\x64\x61\x74\x61\x62\x61\x73\x65\x2D\x7A\x61\x70\x69\x73\x2E\x66\x69\x72\x65\x62\x61\x73\x65\x61\x70\x70\x2E\x63\x6F\x6D","\x64\x61\x74\x61\x62\x61\x73\x65\x2D\x7A\x61\x70\x69\x73","\x64\x61\x74\x61\x62\x61\x73\x65\x2D\x7A\x61\x70\x69\x73\x2E\x61\x70\x70\x73\x70\x6F\x74\x2E\x63\x6F\x6D","\x35\x34\x33\x37\x32\x32\x37\x37\x36\x38\x35\x39","\x31\x3A\x35\x34\x33\x37\x32\x32\x37\x37\x36\x38\x35\x39\x3A\x77\x65\x62\x3A\x66\x31\x62\x33\x32\x37\x39\x66\x37\x30\x63\x39\x64\x65\x61\x64\x30\x39\x34\x62\x62\x65","\x47\x2D\x4B\x59\x58\x46\x36\x4A\x4A\x42\x52\x59","\x69\x6E\x69\x74\x69\x61\x6C\x69\x7A\x65\x41\x70\x70","\x66\x69\x72\x65\x73\x74\x6F\x72\x65"];console[_0x7f35[1]](_0x7f35[0]);const firebaseConfig={apiKey:_0x7f35[2],authDomain:_0x7f35[3],projectId:_0x7f35[4],storageBucket:_0x7f35[5],messagingSenderId:_0x7f35[6],appId:_0x7f35[7],measurementId:_0x7f35[8]};firebase[_0x7f35[9]](firebaseConfig);let fdb=firebase[_0x7f35[10]]()
+// console.log('started');
+//         const firebaseConfig = {
+//         apiKey: "AIzaSyCae2s-xNeb7UZHjPSGySkwviiWaMp7F0c",
+//         authDomain: "database-zapis.firebaseapp.com",
+//         projectId: "database-zapis",
+//         storageBucket: "database-zapis.appspot.com",
+//         messagingSenderId: "543722776859",
+//         appId: "1:543722776859:web:f1b3279f70c9dead094bbe",
+//         measurementId: "G-KYXF6JJBRY"
+//         };
+//          firebase.initializeApp(firebaseConfig);
+//          let fdb= firebase.firestore();
