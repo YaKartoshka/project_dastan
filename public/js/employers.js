@@ -2,6 +2,10 @@ let popUp = document.getElementById("popStud");
 let popUpback = document.getElementById("opened");
 let field=document.getElementById('field')
 var counter=1;
+var update_counter=1;
+let popUp2 = document.getElementById("popStud2");
+let popUpback2 = document.getElementById("opened2");
+
 function openPopStud() {
     popUp.classList.add("open-popstud");
     popUpback.classList.add("b-popup");
@@ -11,6 +15,12 @@ function closePopStud() {
     popUp.classList.remove("open-popstud");
     popUpback.classList.remove("b-popup");
 }
+
+function closePopStud2() {
+    popUp2.classList.remove("open-popstud");
+    popUpback2.classList.remove("b-popup");
+}
+
 $(document).ready(function () {
 
     var flag = false;
@@ -61,8 +71,8 @@ async function showEmployers() {
         }else{
             Img.src = doc.data().profile_image;
         }
-        
         newDiv.classList.add('box');
+        newDiv.id=doc.id;
         newImg.classList.add('image');
         nname.classList.add('name_job');
         ssurname.classList.add('name_job');
@@ -70,20 +80,49 @@ async function showEmployers() {
         newQuality.classList.add('name_job');
         btnMore.classList.add('btns');
         newLink.classList.add('button');
-        newLink.href = '#';
         newImg.innerHTML = Img.outerHTML;
         nname.innerHTML = name;
         ssurname.innerHTML = surname;
         newName.innerHTML = nname.outerHTML + ssurname.outerHTML;
         newQuality.innerHTML = quality;
         newAddInfo.innerHTML = addinfo;
-        newLink.innerHTML = 'Подробнее';
+        newLink.innerHTML = 'Изменить';
         btnMore.innerHTML = newLink.outerHTML;
 
         newDiv.innerHTML = newImg.outerHTML + newName.outerHTML + newQuality.outerHTML + newAddInfo.outerHTML + btnMore.outerHTML;
         
         field.insertAdjacentElement('afterbegin', newDiv);
+        
     });
+    $(".btns").click(function () {
+        var boxname;
+        var boxsurname;
+        var boxspec;
+        var box = $(this).parent();
+        var spec = $(this).parent().children('div').last().text();
+        var surname = $(this).parent().children('div').last().prev().children('div').last().text();
+        var name = $(this).parent().children('div').last().prev().children('div').first().text();
+        var elemfirst = $(popUp2).children('form').children().children('input').first();
+        var image_src = $(this).parent().children('.image').children().attr('src');
+        var emp_id=box.attr('id');
+        document.cookie = encodeURIComponent('emp_id') + '=' + encodeURIComponent(emp_id);
+        $('.user_img').attr("src",`${image_src}`);
+        $(elemfirst).val(name);
+        var elem2 = $(elemfirst).next();
+        $(elem2).val(surname);
+        var elem3 = $(elem2).next();
+        var elem4 = $(elem3).next();
+        $(elem4).val(spec);
+        popUp2.classList.add("open-popstud");
+        popUpback2.classList.add("b-popup");
+        $(".submit").click(function () {
+            boxspec = $(this).prev().prev().prev().val()
+            boxsurname = $(this).prev().prev().prev().prev().prev().val()
+            boxname =$(this).prev().prev().prev().prev().prev().prev().val()
+            
+        })
+        
+    })
 }
 
 function getCookie(name) {
@@ -199,6 +238,54 @@ function addItem(){
         $(this).parent().remove()
     });
     counter++;
+}
+
+function addNewItem(){
+
+    var exact_div = document.getElementById('new_services')
+    var inpName = document.createElement("input")
+    var buttonDel = document.createElement("button")
+    var inpDiv = document.createElement("div")
+    var x_i = document.createElement("i")
+    var inpPrice = document.createElement("input")
+    var inpTime = document.createElement("input")
+    var inpDiv2 = document.createElement("div")
+    var divobshii = document.createElement("div")
+    inpDiv2.classList.add("inpDiv")
+    divobshii.classList.add("inpDiv")
+    inpTime.classList.add("input-field-r")
+    inpTime.classList.add("imp_input")
+    inpTime.setAttribute('name',`s_time${update_counter}`)
+    inpTime.setAttribute('type','text')
+    inpTime.required=true;
+    inpPrice.classList.add("input-field-l");
+    inpPrice.classList.add("imp_input")
+    inpPrice.placeholder = "Стоимость"
+    inpPrice.setAttribute('name',`s_price${update_counter}`)
+    inpPrice.setAttribute('type','text')
+    inpPrice.required=true;
+    x_i.classList.add("fa-sharp")
+    x_i.classList.add("fa-solid")
+    x_i.classList.add("fa-xmark")
+    buttonDel.innerHTML = x_i.outerHTML
+    buttonDel.classList.add("btn_del")
+    inpName.classList.add("input-field")
+    inpName.classList.add("imp_input")
+    inpName.placeholder = "Название"
+    inpName.setAttribute('name',`s_name${update_counter}`)
+    inpName.setAttribute('type','text')
+    inpName.required=true;
+
+    inpTime.placeholder = "Время"
+    inpDiv2.innerHTML = inpPrice.outerHTML + inpTime.outerHTML
+    inpDiv.innerHTML = inpName.outerHTML + inpDiv2.outerHTML
+    divobshii.innerHTML = inpDiv.outerHTML + buttonDel.outerHTML
+    //exact_div.innerHTML += divobshii.outerHTML
+     exact_div.insertAdjacentElement('beforeend',divobshii)
+    $(".btn_del").click(function () {
+        $(this).parent().remove()
+    });
+    update_counter++;
 }
 
 function readURL(input)

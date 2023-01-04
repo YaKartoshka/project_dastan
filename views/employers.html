@@ -71,11 +71,11 @@
             </div>
             <button onclick="openPopStud()" class="addbtn">Добавить</button>
         </div>
-        <form id="field" class="container">
+        <div id="field" class="container">
 
             
 
-        </form>
+        </div>
     </section>
     <div class="popback" id="opened">
         <div class="popUp" id="popStud">
@@ -104,6 +104,41 @@
                     ></textarea>
                 <button type="submit" class="submit" id="submit" onclick="addEmployee()">Добавить</button>
             </form>
+        </div>
+    </div>
+
+    <div class="popback" id="opened2">
+        <div class="popUp" id="popStud2">
+            <button style="border: none; outline: none; background: none; margin-top: 5%; margin-left: 90%;"
+                onclick="closePopStud2()"><i class="fa-solid fa-circle-xmark" style="font-size: 30px;"></i></button>
+            <form action="/update_employee" method="post">
+            <div>
+                <label class="photo">
+                    <img class="user_img" src="/public/images/user.svg" alt="">
+                    <input type="file" id="docpicker" name="avatar_img" accept="image/jpg, image/png, image/jpeg"
+                        class="image_upload">
+                </label>
+                <input id="name" type="text" class="input-field imp_input" name="name" placeholder="Имя" required>
+                <input id="surname" type="text" class="input-field imp_input" name="surname" placeholder="Фамиллия"
+                    required>
+                <input id="patronymic" type="text" class="input-field imp_input" name="patronymic"
+                    placeholder="Отчество" required>
+                <input id="quality" type="text" class="input-field imp_input" name="quality" placeholder="Специальность"
+                    required>
+                <div class="dropdown">
+                    <div class="service_item">
+                        <span>Услуги:</span>
+                        <button type="button" onclick="addNewItem()"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div id="new_services">
+
+                    </div>
+                </div>
+                <textarea id="addinfo" class="input-field addition" name="info"
+                    placeholder="Дополнительная информация"></textarea>
+                <button type="submit" class="submit" id="submit">Изменить</button>
+            </div>
+        </form>
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>

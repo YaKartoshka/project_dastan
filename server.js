@@ -199,7 +199,7 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
             surname:surname.trim(),
             patromymic:patronymic,
             quality:quality.trim(),
-            info:info
+            info:info.trim()
         }
         console.log(employer_data)
         var fid=req.cookies.fid;
@@ -242,7 +242,6 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
             });
         }else{
             uploadImage()
-            
         }
 
         for (let i = 1; i < data_length/3 + 1; i++) {
@@ -259,7 +258,95 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
     
 })
     
+app.post('/update_employee', upload.single('avatar_img'), async(req,res)=>{
+    const {name,surname,patronymic,quality,info}=req.body;
+    var employer_id=req.cookies['emp_id'];
+    // if(req.file==undefined || req.file==null){
+    //     var new_image=null;
+    // }else{
+    //     var new_image=req.file.path;
+    // }
+    const data=req.body;
 
+    if(data.name==undefined || data.surname==undefined ||data.quality==undefined ||data.patronymic==undefined){
+        res.redirect('/employers');
+    }else{
+        delete data.name; 
+        delete data.surname;
+        delete data.patronymic;
+        delete data.quality;
+        delete data.info;
+        delete data.avatar_img;
+       
+        var data_length = Object.keys(data).length;
+    
+        var fid=req.cookies.fid;
+        // const storage=admin.storage().bucket('gs://database-zapis.appspot.com')
+        const employer=fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`);
+        const updated_employee = await employer.update({
+            name:name.trim(),
+            surname:surname.trim(),
+            quality:quality.trim(),
+            patronymic:patronymic.trim(),
+            info:info.trim()
+        });
+        
+        // const uploadImage=async()=>{
+        //     const metadata = {
+        //         metadata: {
+        //           firebaseStorageDownloadTokens: uuid()
+        //         },
+        //         contentType: 'image/png',
+        //         cacheControl: 'public, max-age=31536000',
+        //       };
+            
+        //     var image_name=employer_id+path.extname(req.file.originalname)
+        //     await storage.upload(new_image, {
+        //     gzip: true,
+        //     metadata: metadata,
+        //     destination: `images/${employer_id}/profile_image/${image_name}`
+        //     });
+        
+        //     var image_url=`https://firebasestorage.googleapis.com/v0/b/database-zapis.appspot.com/o/images%2F${employer_id}%2Fprofile_image%2F${image_name}?alt=media`
+        //     const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
+        //         profile_image:image_url
+        //     });
+        //     fs.unlink(image, function (err) {
+        //         if (err) {
+        //           console.error(err);
+        //         } else{
+        //             console.log()
+        //         }
+        //       });
+        // }
+        // if(new_image==undefined || new_image==null){
+        //     const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
+        //         profile_image:null
+        //     });
+        // }else{
+        //     uploadImage()
+            
+        // }
+        var emp_services =  fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services');
+        var emp_services_qS = await emp_services.get();
+        emp_services_qS.forEach(async(doc)=>{
+            console.log(doc.id)
+             var deleted_service = await emp_services.doc(`${doc.id}`).delete();
+        });
+         console.log(data)
+        for (let i = 1; i < data_length/3 + 1; i++) {
+            var service_data={
+                service_during: data[`s_time${i}`].trim(),
+                service_name: data[`s_name${i}`].trim(),
+                service_price:data[`s_price${i}`].trim()
+            }
+            var new_service=await fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services').add(service_data);
+        }
+        
+        res.redirect('back');
+    }
+    
+})
 
 
 app.post('/email_confirm', (req,res)=>{

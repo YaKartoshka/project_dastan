@@ -196,8 +196,10 @@
     color: #17c0eb;
 }
 .user_img{
-    background-size: contain;
     border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
 }
 .container .box .image {
     
@@ -488,11 +490,12 @@ input[type="file"] {
 .service_item span{
     font-weight: bold;
 }
-#services{
+#services, #new_services{
     max-height: 150px;
     height: 100%;
     overflow-y: auto;
 }
+
 .service_item button{
     color: white;
     border-radius: 50%;
