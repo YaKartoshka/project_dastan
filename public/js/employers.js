@@ -102,6 +102,7 @@ async function showEmployers() {
         var spec = $(this).parent().children('div').last().text();
         var surname = $(this).parent().children('div').last().prev().children('div').last().text();
         var name = $(this).parent().children('div').last().prev().children('div').first().text();
+        var info=$(this).parent().children('p').text();
         var elemfirst = $(popUp2).children('form').children().children('input').first();
         var image_src = $(this).parent().children('.image').children().attr('src');
         var emp_id=box.attr('id');
@@ -112,6 +113,7 @@ async function showEmployers() {
         $(elem2).val(surname);
         var elem3 = $(elem2).next();
         var elem4 = $(elem3).next();
+        elem4.next().next().val(info)
         $(elem4).val(spec);
         popUp2.classList.add("open-popstud");
         popUpback2.classList.add("b-popup");

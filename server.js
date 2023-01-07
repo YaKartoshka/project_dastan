@@ -100,14 +100,13 @@ app.post('/signUp', async (req, res) => {
   });
 
 app.post('/signIn', async (req, res) => {
+    console.log(1)
     const email=req.body.email;
     const password=req.body.password;
     var id;
     auth.signInWithEmailAndPassword(fauth,email, password)
     .then(async(userCredential) => {
-    
-    session=req.session;
-    session.email=email
+        console.log(2)
     const company= fdb.collection('company');
     const company_qS=await company.get();
     company_qS.forEach(doc=>{
@@ -115,7 +114,9 @@ app.post('/signIn', async (req, res) => {
             id=doc.id;
         }
     });
+    console.log(3)
     res.cookie('fid',`${id}`);
+    console.log(4)
     res.redirect('/index');
   })
     .catch((error) => {
@@ -197,7 +198,7 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
         const employer_data={
             name:name.trim(),
             surname:surname.trim(),
-            patromymic:patronymic,
+            patronymic:patronymic,
             quality:quality.trim(),
             info:info.trim()
         }
@@ -216,7 +217,7 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
                 cacheControl: 'public, max-age=31536000',
               };
             
-            var image_name=employer_id+path.extname(req.file.originalname)
+            var image_name=req.file.originalname
             await storage.upload(image, {
             gzip: true,
             metadata: metadata,
@@ -261,13 +262,13 @@ app.post('/addEmployer', upload.single('avatar_img') ,async(req,res)=>{
 app.post('/update_employee', upload.single('avatar_img'), async(req,res)=>{
     const {name,surname,patronymic,quality,info}=req.body;
     var employer_id=req.cookies['emp_id'];
-    // if(req.file==undefined || req.file==null){
-    //     var new_image=null;
-    // }else{
-    //     var new_image=req.file.path;
-    // }
+    if(req.file==undefined || req.file==null){
+        var new_image=null;
+    }else{
+        var new_image=req.file.path;
+    }
     const data=req.body;
-
+    console.log(new_image);
     if(data.name==undefined || data.surname==undefined ||data.quality==undefined ||data.patronymic==undefined){
         res.redirect('/employers');
     }else{
@@ -281,7 +282,7 @@ app.post('/update_employee', upload.single('avatar_img'), async(req,res)=>{
         var data_length = Object.keys(data).length;
     
         var fid=req.cookies.fid;
-        // const storage=admin.storage().bucket('gs://database-zapis.appspot.com')
+        const storage=admin.storage().bucket('gs://database-zapis.appspot.com')
         const employer=fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`);
         const updated_employee = await employer.update({
             name:name.trim(),
@@ -291,42 +292,42 @@ app.post('/update_employee', upload.single('avatar_img'), async(req,res)=>{
             info:info.trim()
         });
         
-        // const uploadImage=async()=>{
-        //     const metadata = {
-        //         metadata: {
-        //           firebaseStorageDownloadTokens: uuid()
-        //         },
-        //         contentType: 'image/png',
-        //         cacheControl: 'public, max-age=31536000',
-        //       };
+        const uploadImage=async()=>{
+            const metadata = {
+                metadata: {
+                  firebaseStorageDownloadTokens: uuid()
+                },
+                contentType: 'image/png',
+                cacheControl: 'public, max-age=31536000',
+              };
             
-        //     var image_name=employer_id+path.extname(req.file.originalname)
-        //     await storage.upload(new_image, {
-        //     gzip: true,
-        //     metadata: metadata,
-        //     destination: `images/${employer_id}/profile_image/${image_name}`
-        //     });
+            var image_name=req.file.originalname
+            await storage.upload(new_image, {
+            gzip: true,
+            metadata: metadata,
+            destination: `images/${employer_id}/profile_image/${image_name}`
+            });
         
-        //     var image_url=`https://firebasestorage.googleapis.com/v0/b/database-zapis.appspot.com/o/images%2F${employer_id}%2Fprofile_image%2F${image_name}?alt=media`
-        //     const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
-        //         profile_image:image_url
-        //     });
-        //     fs.unlink(image, function (err) {
-        //         if (err) {
-        //           console.error(err);
-        //         } else{
-        //             console.log()
-        //         }
-        //       });
-        // }
-        // if(new_image==undefined || new_image==null){
-        //     const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
-        //         profile_image:null
-        //     });
-        // }else{
-        //     uploadImage()
+            var image_url=`https://firebasestorage.googleapis.com/v0/b/database-zapis.appspot.com/o/images%2F${employer_id}%2Fprofile_image%2F${image_name}?alt=media`
+            const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
+                profile_image:image_url
+            });
+            fs.unlink(new_image, function (err) {
+                if (err) {
+                  console.error(err);
+                } else{
+                    console.log()
+                }
+              });
+        }
+        if(new_image==undefined || new_image==null){
+            const update_data=fdb.collection('company').doc(`${fid}`).collection('employers').doc(employer_id).update({
+                profile_image:null
+            });
+        }else{
+            uploadImage()
             
-        // }
+        }
         var emp_services =  fdb.collection('company').doc(`${fid}`).collection('employers').doc(`${employer_id}`).collection('services');
         var emp_services_qS = await emp_services.get();
         emp_services_qS.forEach(async(doc)=>{

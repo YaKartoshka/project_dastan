@@ -196,10 +196,11 @@
     color: #17c0eb;
 }
 .user_img{
+    background-size: contain;
     border-radius: 50%;
     height: 100%;
     width: 100%;
-    object-fit:cover;
+    object-fit: cover;
 }
 .container .box .image {
     
@@ -366,7 +367,7 @@
 }
 
 .popUp {
-    width: 400px;
+    width: 300px;
     background: #fff;
     border-radius: 30px;
     position: fixed;
@@ -404,7 +405,7 @@
 
 .popUp .submit {
     width: 70%;
-    padding: 10px 0px;
+    padding: 5px 0px;
     margin-top: 5px;
     background: #92a1d1;
     color: #fff;
@@ -437,14 +438,14 @@
     height: 100%;
 }
 .addition {
-    height: 100px;
+    height: 70px;
     resize: none;
 }
 
 .input-field {
     width: 100%;
-    padding: 10px 0;
-    margin: 5px 0;
+    padding: 2px 0;
+    margin: 2px 0;
     border-left: 0;
     border-right: 0;
     border-top: 0;
@@ -478,7 +479,7 @@ input[type="file"] {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 0;
+    padding: 5px 0;
     margin: 5px 0;
     border-left: 0;
     border-right: 0;
@@ -490,12 +491,16 @@ input[type="file"] {
 .service_item span{
     font-weight: bold;
 }
-#services, #new_services{
-    max-height: 150px;
+#services{
+    max-height: 100px;
     height: 100%;
     overflow-y: auto;
 }
-
+#services2{
+    max-height: 100px;
+    height: 100%;
+    overflow-y: auto;
+}
 .service_item button{
     color: white;
     border-radius: 50%;
