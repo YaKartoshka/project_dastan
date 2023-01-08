@@ -237,12 +237,46 @@ async function showEvents() {
 
 
 }
-function getMonth(month){
-    console.log(month)
-    var months = ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
-    month = months.indexOf(month)+1;
-    return month;
-}   
+const getMonth=(month)=>{
+  if(month=="сентябрь"){
+      return '09'
+  }
+  if(month=="октябрь"){
+      return '10'
+  }
+  if(month=="ноябрь"){
+      return '11'
+  }
+  if(month=="декабрь"){
+      return '12'
+  }
+  if(month=="январь"){
+      return '01'
+  }
+  if(month=="февраль"){
+      return '02'
+  }
+  if(month=="март"){
+      return '03'
+  }
+  if(month=="апрель"){
+      return '04'
+  }
+  if(month=="май"){
+      return '05'
+  }
+  if(month=="июнь"){
+      return '06'
+  }
+  if(month=="июль"){
+      return '07'
+  }
+  if(month=="август"){
+      return '08'
+  }
+  
+}
+  
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
